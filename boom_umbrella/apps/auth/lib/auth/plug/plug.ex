@@ -3,8 +3,9 @@ defmodule Auth.Plug do
   alias Auth.Token
   def init(options), do: options
 
-  def call(conn, _opts \\ %{}) do
+  def call(conn, opts \\ %{}) do
     auth = get_req_header(conn, "authorization")
+    roles = opts[:roles] || []
 
     if auth != [] do
       token =
@@ -18,10 +19,20 @@ defmodule Auth.Plug do
 
       case Token.verify_and_validate(token) do
         {:ok, claims} ->
-          conn
-          |> assign(:token, token)
-          |> assign(:user_id, claims["user_id"])
-          |> assign(:user_ip, user_ip)
+          IO.inspect(claims)
+
+          if Enum.any?(claims["roles"], fn x -> x in roles end) do
+            conn
+            |> assign(:is_auth, true)
+            |> assign(:user_id, claims["user_id"])
+            |> assign(:roles, claims["roles"])
+            |> assign(:client_ip, user_ip)
+          else
+            assign(conn, :is_auth, false)
+            |> assign(:client_ip, user_ip)
+
+            resp_message(conn, %{status: "error", message: "Your role is not appropriate"})
+          end
 
         {:error, _err} ->
           resp_message(conn, %{status: "error", message: "Auth token not valid"})

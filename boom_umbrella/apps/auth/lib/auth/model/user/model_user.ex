@@ -10,8 +10,7 @@ defmodule Auth.Model.User do
     field(:login, :string)
     field(:repassword, :string, virtual: true)
     field(:is_registred, :boolean, default: false)
-
-    has_many(:novella, Boom.Model.Novella)
+    field(:roles, {:array, :string}, default: ["tenant"])
     timestamps()
   end
 
@@ -19,8 +18,8 @@ defmodule Auth.Model.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :data, :login, :repassword, :is_registred])
-    |> validate_required([:email, :password, :data, :login])
+    |> cast(attrs, [:email, :password, :data, :login, :repassword, :is_registred, :roles])
+    |> validate_required([:email, :password, :data, :login, :roles])
     |> validate_format(:email, ~r/@/, message: "isn't valid email")
     |> validate_length(:password,
       min: 3,

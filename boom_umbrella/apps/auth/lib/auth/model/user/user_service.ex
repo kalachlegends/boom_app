@@ -20,7 +20,7 @@ defmodule Auth.Service.User do
       from(
         user in User,
         where: user.login == ^login and user.password == ^password,
-        select: [:id, :login, :email, :data, :is_registred]
+        select: [:id, :login, :email, :data, :is_registred, :roles]
       )
 
     user = Repo.one(query)
@@ -30,7 +30,8 @@ defmodule Auth.Service.User do
         {:error, "Please check your email"}
 
       !is_nil(user) ->
-        token = Token.generate_and_sign!(%{"user_id" => user.id})
+        token = Token.generate_and_sign!(%{"user_id" => user.id, roles: user.roles})
+        IO.inspect(user)
         {:ok, user, token}
 
       true ->
@@ -38,7 +39,7 @@ defmodule Auth.Service.User do
     end
   end
 
-  def register(email, password, repassword, login, _data) do
+  def register(email, password, repassword, login, _data, roles \\ ["tenant"]) do
     case Repo.insert(
            User.changeset(%User{}, %{
              email: email,
@@ -46,11 +47,12 @@ defmodule Auth.Service.User do
              repassword: repassword,
              login: login,
              is_registred: true,
+             roles: roles,
              data: %{"img" => "", "name" => ""}
            })
          ) do
       {:ok, struct} ->
-        token = Token.generate_and_sign!(%{"user_id" => struct.id})
+        token = Token.generate_and_sign!(%{"user_id" => struct.id, roles: roles})
 
         user = struct |> Map.delete(:password) |> Map.delete(:repassword)
         {:ok, user, token}

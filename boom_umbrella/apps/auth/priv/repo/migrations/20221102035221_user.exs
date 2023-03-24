@@ -9,6 +9,7 @@ defmodule Auth.Repo.Migrations.User do
       add(:password, :string)
       add(:data, :map)
       add(:is_registred, :boolean)
+      add(:roles, {:array, :string})
 
       timestamps()
     end

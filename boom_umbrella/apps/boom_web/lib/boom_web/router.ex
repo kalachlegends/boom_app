@@ -24,7 +24,7 @@ defmodule BoomWeb.Router do
   end
 
   pipeline :auth do
-    plug(Auth.Plug)
+    plug(Auth.Plug, roles: ["tenant"])
   end
 
   pipeline :is_auth do
