@@ -1,0 +1,62 @@
+{
+  "name": "nv_design",
+  "version": "0.0.1",
+  "description": "Novella Designer is an app for creating stories. With built-in editor! Also, after creation, you can throw it to your friend!",
+  "productName": "Novella Designer - create stories! ",
+  "author": "Artem Kalachev <artem.kalachev.2002@gmail.com>",
+  "private": true,
+  "scripts": {
+    "lint": "eslint --ext .js,.vue ./",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.0.0",
+    "@vicons/ionicons5": "^0.12.0",
+    "animejs": "^3.2.1",
+    "ant-design-vue": "^3.2.15",
+    "axios": "^0.21.1",
+    "naive-ui": "^2.34.3",
+    "pinia": "^2.0.11",
+    "quasar": "^2.6.0",
+    "radium": "^0.26.2",
+    "save": "^2.9.0",
+    "sweetalert2": "^11.6.16",
+    "uuid": "^9.0.0",
+    "vue": "^3.0.0",
+    "vue-i18n": "^9.0.0",
+    "vue-router": "^4.0.0",
+    "vue-slick-carousel": "^1.0.6",
+    "vue3-carousel": "^0.2.9",
+    "vue3-colorpicker": "^2.0.11",
+    "vuex": "^4.1.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@intlify/vite-plugin-vue-i18n": "^3.3.1",
+    "@quasar/app-vite": "^1.0.0",
+    "@rollup/plugin-dynamic-import-vars": "^2.0.2",
+    "autoprefixer": "^10.4.13",
+    "electron": "^22.0.0",
+    "electron-packager": "^15.5.2",
+    "eslint": "^8.10.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-vue": "^9.0.0",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.4",
+    "workbox-build": "^6.5.4",
+    "workbox-cacheable-response": "^6.5.4",
+    "workbox-core": "^6.5.4",
+    "workbox-expiration": "^6.5.4",
+    "workbox-precaching": "^6.5.4",
+    "workbox-routing": "^6.5.4",
+    "workbox-strategies": "^6.5.4"
+  },
+  "engines": {
+    "node": "^18 || ^16 || ^14.19",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  }
+}

@@ -1,0 +1,2 @@
+defmodule Manuscript do
+end
