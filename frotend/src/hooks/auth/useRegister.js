@@ -10,6 +10,11 @@ export const useRegister = () => {
     login: "",
     password: "",
     repassword: "",
+    roles: ["tenet"],
+    location: {
+      location_id: "",
+      address: "",
+    },
   });
 
   const isLoad = ref(false);
@@ -27,28 +32,28 @@ export const useRegister = () => {
   const { errors, validate, getKeyError } = useValidate(schema, dataForm);
   const handleClickRegister = async () => {
     isLoad.value = true;
-    await validate();
-    if (errors.value.isValid) {
-      await axios
-        .post("/auth/register", dataForm.value)
-        .then((res) => {
-          axios.defaults.headers.common["Authorization"] = res.data.token;
-          // localStorage.setItem("token", res.data.token);
-          // localStorage.setItem("user", JSON.stringify(res.data.user));
+    // await validate();
+    console.log(errors);
+    await axios
+      .post("/auth/register", dataForm.value)
+      .then((res) => {
+        axios.defaults.headers.common["Authorization"] = res.data.token;
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("user", JSON.stringify(res.data.user));
 
-          Toast.fire({
-            icon: "success",
-            title: "Check Your Email adress",
-          });
-          // router.push("/");
-        })
-        .catch((err) => {
-          Toast.fire({
-            icon: "error",
-            title: Object.values(err.response.data.error)[0],
-          });
+        Toast.fire({
+          icon: "success",
+          title: "Check Your Email adress",
         });
-    }
+        // router.push("/");
+      })
+      .catch((err) => {
+        Toast.fire({
+          icon: "error",
+          title: Object.values(err.response.data.error)[0],
+        });
+      });
+
     isLoad.value = false;
   };
 
