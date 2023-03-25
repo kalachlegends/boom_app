@@ -89,7 +89,11 @@ defmodule BoomWeb.Router do
       post("/", LikeController, :like)
     end
 
-        # @generate
+          # @generate
+    scope "/location" do
+      get("/", LocationController, :get_by_sample)
+   end
+
     scope "/incident" do
       post("/", IncidentController, :create)
       get("/all", IncidentController, :get_all)
