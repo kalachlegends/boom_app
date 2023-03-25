@@ -3,9 +3,15 @@ defmodule BoomWeb.IncidentController do
   # Create incident -> CRUD
   """
   @body %{
-  locations_list: "",
-  title: "",
-  user_id: "",
+    close_dateq: "utc_datetime",
+    description: "string",
+    location_address: "string",
+    location_id: "integer",
+    priority: "string",
+    status: "string",
+    title: "string",
+    user_id: "binary_id",
+    org_id: "id",
 
 }
 
