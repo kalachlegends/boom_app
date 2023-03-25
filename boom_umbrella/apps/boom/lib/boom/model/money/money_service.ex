@@ -48,15 +48,16 @@ defmodule Boom.Model.MoneyService do
       where: org.id == ^org_id,
       select: org
     )
-    |> Boom.Repo.all()
+    |> Boom.Repo.one()
     |> case do
       {:error, reason} ->
         {:error, reason}
 
-      [] ->
-        {:ok, []}
+      nil ->
+        {:error, "Не существует данной организации"}
 
-      list ->
-        {:ok, list}
+      struct ->
+        {:ok, struct}
+    end
   end
 end
