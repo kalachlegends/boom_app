@@ -56,8 +56,13 @@ defmodule BoomWeb.Router do
       get("/:id", ViewsController, :get)
     end
 
+    # @generate
+    scope "/location" do
+      get("/", LocationController, :get_by_sample)
+    end
+
     scope "/auth" do
-      pipe_through(:brute_force)
+      # pipe_through(:brute_force)
       post("/register", UserController, :register)
       post("/login", UserController, :login)
 
@@ -121,6 +126,8 @@ defmodule BoomWeb.Router do
       get("/attrs", IncidentController, :get_by_attrs)
       get("/:id", IncidentController, :get)
       put("/", IncidentController, :update)
+      put("/", IncidentController, :update_from_manager)
+      put("/", IncidentController, :update_from_org)
       delete("/:id", IncidentController, :delete)
     end
 

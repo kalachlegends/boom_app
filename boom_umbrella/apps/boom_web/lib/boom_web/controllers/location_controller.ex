@@ -19,7 +19,7 @@ defmodule BoomWeb.LocationController do
   @doc auth: "token"
   def get_by_sample(_conn, params) do
     with {:ok, locations} <- LocationService.get_by_sample(params) do
-      {:render, %{locations: locations}}
+      {:render, %{locations: Enum.map(locations, &Map.put(&1, :full_name, String.replace(&1.full_name, "Республика Казахстан ", "")))}}
     end
   end
 end

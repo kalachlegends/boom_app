@@ -9,7 +9,7 @@ defmodule Boom.Repo.Migrations.CreateIncident do
       add :status, :string
       add :priority, :string
       add :close_dateq, :utc_datetime
-      add :location_id, :integer
+      add :location_id, references(:location, on_delete: :nothing)
       add :location_address, :string
       add :user_id, references(:user, type: :uuid, on_delete: :nothing)
       add :org_id, references(:organization, type: :uuid, on_delete: :nothing)

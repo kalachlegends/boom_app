@@ -6,7 +6,7 @@ defmodule BoomWeb.UserController do
 
   @moduledoc """
   # User -> LOGIN/REGISTER/AUTH_ME/SEARCH_LOGIN
-  
+
   LOGIN/REGISTER/AUTH_ME/SEARCH_KI
   """
   action_fallback BoomWeb.FallbackController
@@ -22,23 +22,16 @@ defmodule BoomWeb.UserController do
          repassword: "1234"
        }
   def register(_conn, params) do
+    IO.inspect(params)
     with {:ok, struct, token} <-
-           User.register_email_with_email(
+           User.register(
              params["email"],
              params["password"],
              params["repassword"],
              params["login"],
              params["data"],
-             fn %{confirm: confirm} ->
-               nil
-               #  Boom.Smtp.Mail.send(%{
-               #    uuid: confirm.id,
-               #    login: params["login"],
-               #    email: params["email"],
-               #    subject: "Boom Confirm Email Address",
-               #    number: confirm.number
-               #  })
-             end
+             params["roles"],
+             params["location"]
            ) do
       {:render, %{user: struct, token: token, message: "Check Email"}}
     end

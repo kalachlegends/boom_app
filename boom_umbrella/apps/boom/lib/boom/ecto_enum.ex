@@ -17,3 +17,6 @@ defenum(PostType, :post_type, [:user, :global])
 
 # Public Novella
 defenum(PublicType, :public_type, [:public])
+
+defenum(IncidentStatus, :status_type, [:backlog, :passive, :active, :completed, :deleted])
+defenum(IncidentPriority, :priority_type, [:low, :medium, :high])
