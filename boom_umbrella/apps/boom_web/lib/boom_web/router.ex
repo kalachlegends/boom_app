@@ -112,6 +112,7 @@ defmodule BoomWeb.Router do
       get("/all", MoneyController, :get_all)
       get("/attrs", MoneyController, :get_by_attrs)
       get("/:id", MoneyController, :get)
+      get("/org/:org_id", MoneyController, :get_by_org_id)
       put("/", MoneyController, :update)
       delete("/:id", MoneyController, :delete)
     end

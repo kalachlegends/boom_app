@@ -3,11 +3,10 @@ defmodule BoomWeb.MoneyController do
   # Create money -> CRUD
   """
   @body %{
-  locations_list: "",
-  title: "",
-  user_id: "",
-
-}
+    locations_list: "",
+    title: "",
+    user_id: ""
+  }
 
   use BoomWeb, :controller
   action_fallback(BoomWeb.FallbackController)
@@ -15,6 +14,7 @@ defmodule BoomWeb.MoneyController do
   alias Boom.Model.Money
   alias Boom.Service.Money, as: MoneyService
   alias Boom.Helper
+
   @doc """
   # Create money
   """
@@ -64,7 +64,7 @@ defmodule BoomWeb.MoneyController do
   """
   @doc auth: "token"
   def get(conn, params) do
-    with {:ok, item} <- Boom.Model.MoneyService.get_money_by_org_id(params["id"]) do
+    with {:ok, item} <- Money.get(params["id"]) do
       {:render, %{money: item}}
     end
   end
@@ -76,6 +76,12 @@ defmodule BoomWeb.MoneyController do
   def delete(conn, params) do
     with {:ok, item} <- Money.delete(params["id"]) do
       {:render, %{money: item}}
+    end
+  end
+
+  def get_by_org_id(conn, params) do
+    with {:ok, list} <- Boom.Model.MoneyService.get_money_by_org_id(params["org_id"]) do
+      {:render, %{money: list}}
     end
   end
 end
