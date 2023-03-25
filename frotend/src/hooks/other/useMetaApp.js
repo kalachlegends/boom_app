@@ -1,17 +1,17 @@
 import { useMeta } from "quasar";
-export const useMetaApp = (attrs = {}, appTitle = "Novella Designer App") => {
+export const useMetaApp = (attrs = {}, appTitle = "TenantTracker") => {
   useMeta(() => {
     return {
       // whenever "title" from above changes, your meta will automatically update
-      title: attrs["title"] || "Create stories! by using ",
+      title: attrs["title"] || "incident manager",
       titleTemplate: (title) => `${title} - ${appTitle}`,
-      ogTitle: attrs["og_title"] || "Create stories! by using ",
+      ogTitle: attrs["og_title"] || "incident manager",
       meta: {
         description: {
           name: "description",
           content:
             attrs["description"] ||
-            "Novella Designer is an app for creating stories. With built-in editor! Also, after creation, you can throw it to your friend!",
+            "TenanttTracker",
         },
         "naive-ui-style": {
           name: "naive-ui-style",
@@ -20,7 +20,7 @@ export const useMetaApp = (attrs = {}, appTitle = "Novella Designer App") => {
         ogTitle: {
           property: "og:title",
           content: `${
-            attrs["title"] || "Create stories! by using "
+            attrs["title"] || "incident manager"
           } - ${appTitle}`,
           // optional; similar to titleTemplate, but allows templating with other meta properties
         },

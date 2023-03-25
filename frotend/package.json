@@ -1,8 +1,8 @@
 {
   "name": "nv_design",
   "version": "0.0.1",
-  "description": "Novella Designer is an app for creating stories. With built-in editor! Also, after creation, you can throw it to your friend!",
-  "productName": "Novella Designer - create stories! ",
+  "description": "TenantTracker",
+  "productName": "TenantTracker",
   "author": "Artem Kalachev <artem.kalachev.2002@gmail.com>",
   "private": true,
   "scripts": {
