@@ -1,5 +1,8 @@
-defmodule Boom.Location do
+defmodule Boom.Service.Location do
+  import Ecto.Query
   alias Boom.Model.Location
+  alias Boom.Repo
+
 
   def load_locations() do
     with {:ok, locations} <- File.read("locations/s_ats.txt"),
@@ -57,6 +60,36 @@ defmodule Boom.Location do
       end)
       |> IO.inspect()
       |> Enum.each(&Location.add(&1))
+    end
+  end
+
+  def get_by_sample(sample) do
+    locality_list =
+      sample
+      |> String.trim()
+      |> get_localities_by_sample_of_name()
+      |> Enum.map(fn i -> %{id: i.id, name: i.name, full_name: i.full_name} end)
+
+    {:ok, %{localities: locality_list}}
+  end
+
+  defp get_localities_by_sample_of_name(sample_of_name) do
+    sample_of_name
+    |> query_get_localities_by_sample_of_name()
+    |> Repo.all()
+  end
+
+  defp query_get_localities_by_sample_of_name(sample_of_name) do
+    query =
+      from(
+        l in Location,
+        select: %{id: l.id, full_name: l.full_name, name: l.name}
+      )
+
+    if is_nil(sample_of_name) or sample_of_name == "" do
+      query
+    else
+      where(query, [l], ilike(l.name, ^"%#{sample_of_name}%") and (l.type == "п." or l.type == "г." or l.type == "р-н"))
     end
   end
 end
