@@ -14,9 +14,11 @@ defmodule Boom.Model.Location do
   use Boom.Use.RepoBase, repo: Boom.Repo
 
   @doc false
-  def changeset(location, attrs) do
-    location
-    |> cast(attrs, [:id, :parent_id, :type, :name, :full_name])
-    |> validate_required([:id, :parent_id, :type, :name, :full_name])
-  end
+  @required_fields ~w(full_name name parent_id type)a
+   @optional_fields ~w()a
+   def changeset(model, attrs) do
+     model
+     |> cast(attrs, @required_fields ++ @optional_fields)
+     |> validate_required(@optional_fields)
+   end
 end
