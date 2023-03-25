@@ -90,6 +90,18 @@ const menuOptions = computed(() => [
     key: "go-dashboard",
     icon: renderIcon(HomeOutline),
   },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: "/money",
+        },
+        "Панель КСК"
+      ),
+    key: "go-ksk",
+    icon: renderIcon(),
+  },
 ]);
 
 const handleChangeTheme = (value) => {
