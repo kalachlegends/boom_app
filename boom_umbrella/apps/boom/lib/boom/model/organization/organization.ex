@@ -6,7 +6,7 @@ defmodule Boom.Model.Organization do
   schema "organization" do
     field(:locations_list, {:array, :integer})
     field(:title, :string)
-    field(:user_id, :id)
+    field(:user_id, :binary_id)
 
     timestamps()
   end
