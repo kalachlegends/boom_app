@@ -1,7 +1,7 @@
 <template>
-  <div class="tw-flex tw-justify-between tw-items-center">
-    <div>{{ name }}</div>
-    <div class="sum">{{ sum }}</div>
+  <div class="tw-flex tw-justify-between tw-items-center tw-pb-4">
+    <!-- <div class="tw-text-lg">{{ name }}</div> -->
+    <div class="sum">Сумма денег: {{ sum }}</div>
   </div>
 </template>
 
@@ -12,17 +12,16 @@ export default {
   data() {
     return {
       sum: 0,
+      name: "",
     };
   },
   mounted() {
     axios
       .get("/money/all")
       .then((response) => {
-        console.log(response);
-        const name = response.data.money;
-        const money = response.data.money[0];
-        this.name = name.cash.bills;
-        this.sum = money.cash.bills + "." + money.cash.coins;
+        const data = response.data.money[0];
+        console.log(data);
+        this.sum = data.cash.bills + "." + data.cash.coins;
       })
       .catch((error) => {
         console.log(error);
@@ -32,5 +31,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/* Стили компонента */
 </style>
