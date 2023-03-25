@@ -97,6 +97,7 @@ defmodule BoomWeb.Router do
         post("/", MoneyMovementController, :create)
         get("/all", MoneyMovementController, :get_all)
         get("/attrs", MoneyMovementController, :get_by_attrs)
+        get("/period", MoneyMovementController, :get_mm_by_period)
         get("/:id", MoneyMovementController, :get)
         put("/", MoneyMovementController, :update)
         delete("/:id", MoneyMovementController, :delete)
