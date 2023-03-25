@@ -12,11 +12,19 @@ const routes = [
       layout: "AppLayoutMain",
     },
   },
-
   {
     path: "/dashboard",
     name: "dashboard",
     component: () => import("src/pages/dashboard/DashBoard.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMain",
+    },
+  },
+  {
+    path: "/money",
+    name: "money",
+    component: () => import("src/pages/money/KskPage.vue"),
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
