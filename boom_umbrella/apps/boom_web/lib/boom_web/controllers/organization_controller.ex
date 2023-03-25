@@ -27,7 +27,11 @@ defmodule BoomWeb.OrganizationController do
       repassword: params["password"],
       login: params["bin"],
       data: "",
-      roles: params["roles"]
+      roles: params["roles"],
+      locality: %{
+        locality_id: "",
+        locality_address: ""
+      }
     }
 
     with {:ok, user, token} <- Auth.Service.User.register(user_opts),
