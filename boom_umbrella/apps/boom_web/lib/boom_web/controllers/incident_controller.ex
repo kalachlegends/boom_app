@@ -3,15 +3,10 @@ defmodule BoomWeb.IncidentController do
   # Create incident -> CRUD
   """
   @body %{
-  close_dateq: "",
-  description: "",
-  location_address: "",
-  location_id: "",
-  priority: "",
-  status: "",
+  locations_list: "",
   title: "",
   user_id: "",
-  org_id: ""
+
 }
 
   use BoomWeb, :controller
@@ -45,7 +40,7 @@ defmodule BoomWeb.IncidentController do
   @doc """
   # Get by attrs incident
   """
-  @doc body: @body
+  @doc params: @body
   @doc auth: "token"
   def get_by_attrs(conn, params) do
     with {:ok, item} <- Incident.get(params) do
@@ -56,7 +51,7 @@ defmodule BoomWeb.IncidentController do
   @doc """
   # Get_all by attrs incident
   """
-  @doc body: @body
+  @doc params: @body
   @doc auth: "token"
   def get_all(conn, params) do
     with {:ok, item} <- Incident.get_all(params) do
