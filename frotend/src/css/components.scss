@@ -360,8 +360,8 @@
         @include adaptiv-font(40, 24);
     }
     &__image {
-        width: 86%;
+        width: 100%;
         position: relative;
-        padding: 0px 0 60% 0;
+        padding: 0px 0 25% 0;
     }
 }

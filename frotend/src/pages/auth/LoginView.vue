@@ -7,14 +7,14 @@
             <form class="login-block__body">
     
               <loader v-if="isLoad" :sx="{alignSelf: 'center'}" />
-              <input-image v-model="formData.login"  :placeholder="'Login'" urlImage="img/icons/user.svg" :error="getKeyError(errors.errors, 'login')" />
-              <input-image type="password" v-model="formData.password" :placeholder="'Password'"  urlImage="img/icons/lock-password.svg" :error="getKeyError(errors.errors, 'password')" />
+              <input-image v-model="formData.login"  :placeholder="'Имя пользователя'" urlImage="img/icons/user.svg" :error="getKeyError(errors.errors, 'login')" />
+              <input-image type="password" v-model="formData.password" :placeholder="'Пароль'"  urlImage="img/icons/lock-password.svg" :error="getKeyError(errors.errors, 'password')" />
                 <button @click.prevent="handleClickAuth" type="submit" class="btn-grey">
-                    Login
+                    Войти
                 </button>
                 <div class="df-aic-jc-fx-c gap-10">
-                  <router-link to="/register" class="text-align-center "> Don't have an account? Register! </router-link>
-                  <router-link to="/restore_password" class="text-align-center width-80">Forgot your password?</router-link>
+                  <router-link to="/register" class="text-align-center "> У вас нет аккаунта? Зарегистрируйтесь </router-link>
+                  <router-link to="/restore_password" class="text-align-center width-80">Забыли пароль?</router-link>
                 </div>
             </form>
         </div> 
