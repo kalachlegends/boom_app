@@ -1,5 +1,5 @@
 <template>
-  <n-h1>Home</n-h1>
+  <n-h1>Главная</n-h1>
   <CreatePost />
 </template>
 <script setup>

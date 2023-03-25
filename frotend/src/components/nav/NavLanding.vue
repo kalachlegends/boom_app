@@ -24,6 +24,13 @@
                 :inverted="inverted"
                 :collapsed-width="64"
                 :collapsed-icon-size="22"
+                :options="dashBoardOptions"
+              >
+              </n-menu>
+              <n-menu
+                :inverted="inverted"
+                :collapsed-width="64"
+                :collapsed-icon-size="22"
                 :options="menuOptionsBottom"
               >
               </n-menu>
@@ -66,9 +73,21 @@ const menuOptions = computed(() => [
         {
           to: "/",
         },
-        "Go Home"
+        "На Главную"
       ),
     key: "go-back-home",
+    icon: renderIcon(HomeOutline),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: "/dashboard",
+        },
+        "Доска"
+      ),
+    key: "go-dashboard",
     icon: renderIcon(HomeOutline),
   },
 ]);
@@ -95,7 +114,7 @@ const menuOptionsBottom = computed(() => [
             handleChangeTheme("dark");
           },
         },
-        "Dark"
+        "Тёмная тема"
       ),
     key: "Dark",
     icon: renderIcon(MoonOutline),
@@ -109,7 +128,7 @@ const menuOptionsBottom = computed(() => [
             handleChangeTheme("light");
           },
         },
-        "Light"
+        "Яркая тема"
       ),
     key: "Light",
     icon: renderIcon(Sunny),
@@ -122,7 +141,7 @@ const menuOptionsBottom = computed(() => [
         {
           onClick: () => handleLogout(),
         },
-        "Logout"
+        "Выйти из аккаунта"
       ),
     icon: renderIcon(LogOutOutline),
   },

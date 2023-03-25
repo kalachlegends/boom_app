@@ -14,6 +14,16 @@ const routes = [
   },
 
   {
+    path: "/dashboard",
+    name: "dashboard",
+    component: () => import("src/pages/dashboard/DashBoard.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMain",
+    },
+  },
+
+  {
     path: "/profile/:login",
     name: "profile",
     component: () => import("pages/ProfileView.vue"),
