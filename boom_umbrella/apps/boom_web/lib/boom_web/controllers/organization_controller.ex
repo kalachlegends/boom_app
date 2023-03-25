@@ -21,25 +21,26 @@ defmodule BoomWeb.OrganizationController do
   @doc body: @body
   @doc auth: "token"
   def create(conn, params) do
-    user_opts = %{
-      email: "",
-      passord: params["password"],
-      repassword: params["password"],
-      login: params["bin"],
-      data: "",
-      roles: params["roles"],
-      locality: %{
-        locality_id: "",
-        locality_address: ""
-      }
-    }
+    IO.inspect(params)
 
-    with {:ok, user, token} <- Auth.Service.User.register(user_opts),
+    with {:ok, user, token} <-
+           Auth.Service.User.register(
+             "",
+             params["password"],
+             params["password"],
+             params["bin"],
+             "",
+             [params["roles"]],
+             %{
+               "location_id" => "",
+               "address" => ""
+             }
+           ) |> IO.inspect(),
          {:ok, item} <-
-           Organization.create(
+           Organization.create(%{
              user_id: user.id,
              locations_list: params["locations_list"],
-             title: params["title"]
+             title: params["title"]}
            ) do
       {:render, %{organization: item}}
     end

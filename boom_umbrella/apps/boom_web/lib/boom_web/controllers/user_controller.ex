@@ -22,6 +22,7 @@ defmodule BoomWeb.UserController do
          repassword: "1234"
        }
   def register(_conn, params) do
+    IO.inspect(params)
     with {:ok, struct, token} <-
            User.register(
              params["email"],
@@ -29,8 +30,8 @@ defmodule BoomWeb.UserController do
              params["repassword"],
              params["login"],
              params["data"],
-            ["tenant"],
-            params["locality"]
+             params["roles"],
+             params["location"]
            ) do
       {:render, %{user: struct, token: token, message: "Check Email"}}
     end

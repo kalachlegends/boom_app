@@ -62,7 +62,7 @@ defmodule BoomWeb.Router do
     end
 
     scope "/auth" do
-      pipe_through(:brute_force)
+      # pipe_through(:brute_force)
       post("/register", UserController, :register)
       post("/login", UserController, :login)
 

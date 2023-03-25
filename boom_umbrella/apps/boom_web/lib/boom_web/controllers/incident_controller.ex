@@ -91,7 +91,7 @@ defmodule BoomWeb.IncidentController do
 
   def update_from_manger(conn, params) do
     opts = %{
-      
+
     }
   end
 

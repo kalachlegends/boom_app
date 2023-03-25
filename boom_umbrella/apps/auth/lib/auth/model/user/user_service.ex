@@ -20,7 +20,7 @@ defmodule Auth.Service.User do
       from(
         user in User,
         where: user.login == ^login and user.password == ^password,
-        select: [:id, :login, :email, :data, :is_registred, :roles]
+        select: [:id, :login, :email, :data, :is_registred, :roles, :location_id, :location_address]
       )
 
     user = Repo.one(query)
@@ -39,18 +39,18 @@ defmodule Auth.Service.User do
     end
   end
 
-  def register(email, password, repassword, login, _data, roles \\ ["tenant"], locality) do
+  def register(email, password, repassword, login, _data, roles \\ ["tenant"], location) do
     case Repo.insert(
            User.changeset(%User{}, %{
              email: Ecto.UUID.generate(),
              password: password,
-             repassword: repassword,
+             repassword: password,
              login: login,
              is_registred: true,
              roles: roles,
              data: %{"img" => "", "name" => ""},
-             location_id: locality.locality_id,
-             location_address: locality.address
+             location_id: location["location_id"],
+             location_address: location["address"]
            })
          ) do
       {:ok, struct} ->
@@ -65,9 +65,9 @@ defmodule Auth.Service.User do
     end
   end
 
-  def register_email_with_email(email, password, repassword, login, data, func_email, locality)
+  def register_email_with_email(email, password, repassword, login, data, func_email, location)
       when is_function(func_email) do
-    with {:ok, user, token} <- register(email, password, repassword, login, data, locality),
+    with {:ok, user, token} <- register(email, password, repassword, login, data, location),
          {:ok, confirm_struct} <-
            Auth.Model.Confirm.add(%{
              user_id: user.id,
