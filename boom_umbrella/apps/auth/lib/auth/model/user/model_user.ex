@@ -20,7 +20,6 @@ defmodule Auth.Model.User do
     user
     |> cast(attrs, [:email, :password, :data, :login, :repassword, :is_registred, :roles])
     |> validate_required([:email, :password, :data, :login, :roles])
-    |> validate_format(:email, ~r/@/, message: "isn't valid email")
     |> validate_length(:password,
       min: 3,
       max: 32

@@ -11,9 +11,8 @@ defmodule BoomWeb.IncidentController do
     status: "string",
     title: "string",
     user_id: "binary_id",
-    org_id: "id",
-
-}
+    org_id: "id"
+  }
 
   use BoomWeb, :controller
   action_fallback(BoomWeb.FallbackController)
@@ -21,13 +20,17 @@ defmodule BoomWeb.IncidentController do
   alias Boom.Model.Incident
   alias Boom.Service.Incident, as: IncidentService
   alias Boom.Helper
+
   @doc """
   # Create incident
   """
   @doc body: @body
   @doc auth: "token"
-  def create(conn, params) do
-    with {:ok, item} <- Incident.create(params |> Helper.map_put_user_id(conn)) do
+  def create(conn, params) do #Timex.from_unix(params["close_dateq"], :millisecond)
+    with {:ok, item} <-
+           Incident.create(
+             params |> Helper.map_put_user_id(conn)
+           ) do
       {:render, %{incident: item}}
     end
   end
@@ -38,7 +41,8 @@ defmodule BoomWeb.IncidentController do
   @doc body: @body
   @doc auth: "token"
   def update(conn, params) do
-    with {:ok, item} <- Incident.update_by_id(params["id"], params |> Helper.map_put_user_id(conn)) do
+    with {:ok, item} <-
+           Incident.update_by_id(params["id"], params |> Helper.map_put_user_id(conn)) do
       {:render, %{incident: item}}
     end
   end
@@ -83,5 +87,17 @@ defmodule BoomWeb.IncidentController do
     with {:ok, item} <- Incident.delete(params["id"]) do
       {:render, %{incident: item}}
     end
+  end
+
+  def update_from_manger(conn, params) do
+    opts = %{
+      
+    }
+  end
+
+  def update_from_org(conn, params) do
+    opts = %{
+
+    }
   end
 end

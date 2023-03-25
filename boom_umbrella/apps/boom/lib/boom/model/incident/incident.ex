@@ -13,7 +13,7 @@ defmodule Boom.Model.Incident do
     field(:status, :string)
     field(:title, :string)
     field(:user_id, :binary_id)
-    field(:org_id, :id)
+    field(:org_id, :binary_id)
 
     timestamps()
   end
@@ -21,11 +21,11 @@ defmodule Boom.Model.Incident do
   use Boom.Use.RepoBase, repo: Boom.Repo
 
   @doc false
-  @required_fields ~w(close_dateq description priority location_address status title user_id org_id)a
-  @optional_fields ~w()a
+  @required_fields ~w(description location_address location_id title user_id org_id)a
+  @optional_fields ~w(status priority close_dateq)a
   def changeset(model, attrs) do
     model
     |> cast(attrs, @required_fields ++ @optional_fields)
-    |> validate_required(@optional_fields)
+    |> validate_required(@required_fields)
   end
 end

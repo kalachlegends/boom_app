@@ -6,7 +6,7 @@ defmodule BoomWeb.OrganizationController do
     user_id: "",
     locations_list: [],
     title: ""
-}
+  }
 
   use BoomWeb, :controller
   action_fallback(BoomWeb.FallbackController)
@@ -14,14 +14,29 @@ defmodule BoomWeb.OrganizationController do
   alias Boom.Model.Organization
   alias Boom.Service.Organization, as: OrganizationService
   alias Boom.Helper
+
   @doc """
   # Create organization
   """
   @doc body: @body
   @doc auth: "token"
   def create(conn, params) do
-    with {:ok, item} <- Organization.create(params |> Helper.map_put_user_id(conn)) |> IO.inspect(label: "test create controller") do
-      # item = Map.merge(item, :kaneki, "Abay")
+    user_opts = %{
+      email: "",
+      passord: params["password"],
+      repassword: params["password"],
+      login: params["bin"],
+      data: "",
+      roles: params["roles"]
+    }
+
+    with {:ok, user, token} <- Auth.Service.User.register(user_opts),
+         {:ok, item} <-
+           Organization.create(
+             user_id: user.id,
+             locations_list: params["locations_list"],
+             title: params["title"]
+           ) do
       {:render, %{organization: item}}
     end
   end
@@ -32,7 +47,8 @@ defmodule BoomWeb.OrganizationController do
   @doc body: @body
   @doc auth: "token"
   def update(conn, params) do
-    with {:ok, item} <- Organization.update_by_id(params["id"], params |> Helper.map_put_user_id(conn)) do
+    with {:ok, item} <-
+           Organization.update_by_id(params["id"], params) do
       {:render, %{organization: item}}
     end
   end

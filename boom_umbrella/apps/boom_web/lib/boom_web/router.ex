@@ -39,9 +39,10 @@ defmodule BoomWeb.Router do
   end
 
   pipeline(:admin_devoloper) do
-    plug :basic_auth,
+    plug(:basic_auth,
       username: "admin_developer",
       password: Boom.Helper.get_dashboard_auth()
+    )
   end
 
   # Other scopes may use custom stacks.
@@ -53,6 +54,11 @@ defmodule BoomWeb.Router do
       get("/all", ViewsController, :get_all)
       get("/attrs", ViewsController, :get_by_attrs)
       get("/:id", ViewsController, :get)
+    end
+
+    # @generate
+    scope "/location" do
+      get("/", LocationController, :get_by_sample)
     end
 
     scope "/auth" do
@@ -89,28 +95,25 @@ defmodule BoomWeb.Router do
       post("/", LikeController, :like)
     end
 
-          # @generate
-    scope "/location" do
-      get("/", LocationController, :get_by_sample)
-   end
-
     scope "/incident" do
       post("/", IncidentController, :create)
       get("/all", IncidentController, :get_all)
       get("/attrs", IncidentController, :get_by_attrs)
       get("/:id", IncidentController, :get)
       put("/", IncidentController, :update)
+      put("/", IncidentController, :update_from_manager)
+      put("/", IncidentController, :update_from_org)
       delete("/:id", IncidentController, :delete)
-   end
+    end
 
-   scope "/organization" do
-    post("/", OrganizationController, :create)
-    get("/all", OrganizationController, :get_all)
-    get("/attrs", OrganizationController, :get_by_attrs)
-    get("/:id", OrganizationController, :get)
-    put("/", OrganizationController, :update)
-    delete("/:id", OrganizationController, :delete)
- end
+    scope "/organization" do
+      post("/", OrganizationController, :create)
+      get("/all", OrganizationController, :get_all)
+      get("/attrs", OrganizationController, :get_by_attrs)
+      get("/:id", OrganizationController, :get)
+      put("/", OrganizationController, :update)
+      delete("/:id", OrganizationController, :delete)
+    end
 
     scope "/post" do
       post("/", PostController, :create)
