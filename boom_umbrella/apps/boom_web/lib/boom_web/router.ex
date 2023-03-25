@@ -89,7 +89,16 @@ defmodule BoomWeb.Router do
       post("/", LikeController, :like)
     end
 
-          # @generate
+            # @generate
+    scope "/money" do
+      post("/", MoneyController, :create)
+      get("/all", MoneyController, :get_all)
+      get("/attrs", MoneyController, :get_by_attrs)
+      get("/:id", MoneyController, :get)
+      put("/", MoneyController, :update)
+      delete("/:id", MoneyController, :delete)
+   end
+
     scope "/location" do
       get("/", LocationController, :get_by_sample)
    end
