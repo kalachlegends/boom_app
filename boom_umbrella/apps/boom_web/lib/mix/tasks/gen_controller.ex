@@ -109,7 +109,7 @@ defmodule Mix.Tasks.Gen.Controller do
       @doc \"\"\"
       # Get by attrs #{name_file_downcase}
       \"\"\"
-      @doc body: @body
+      @doc params: @body
       @doc auth: "token"
       def get_by_attrs(conn, params) do
         with {:ok, item} <- #{name}.get(params) do
@@ -120,7 +120,7 @@ defmodule Mix.Tasks.Gen.Controller do
       @doc \"\"\"
       # Get_all by attrs #{name_file_downcase}
       \"\"\"
-      @doc body: @body
+      @doc params: @body
       @doc auth: "token"
       def get_all(conn, params) do
         with {:ok, item} <- #{name}.get_all(params) do
