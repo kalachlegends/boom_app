@@ -39,9 +39,10 @@ defmodule BoomWeb.Router do
   end
 
   pipeline(:admin_devoloper) do
-    plug :basic_auth,
+    plug(:basic_auth,
       username: "admin_developer",
       password: Boom.Helper.get_dashboard_auth()
+    )
   end
 
   # Other scopes may use custom stacks.
@@ -89,10 +90,29 @@ defmodule BoomWeb.Router do
       post("/", LikeController, :like)
     end
 
-          # @generate
+    # @generate
+
+    scope "/money" do
+      scope "movement" do
+        post("/", MoneyMovementController, :create)
+        get("/all", MoneyMovementController, :get_all)
+        get("/attrs", MoneyMovementController, :get_by_attrs)
+        get("/:id", MoneyMovementController, :get)
+        put("/", MoneyMovementController, :update)
+        delete("/:id", MoneyMovementController, :delete)
+      end
+
+      post("/", MoneyController, :create)
+      get("/all", MoneyController, :get_all)
+      get("/attrs", MoneyController, :get_by_attrs)
+      get("/:id", MoneyController, :get)
+      put("/", MoneyController, :update)
+      delete("/:id", MoneyController, :delete)
+    end
+
     scope "/location" do
       get("/", LocationController, :get_by_sample)
-   end
+    end
 
     scope "/incident" do
       post("/", IncidentController, :create)
@@ -101,16 +121,16 @@ defmodule BoomWeb.Router do
       get("/:id", IncidentController, :get)
       put("/", IncidentController, :update)
       delete("/:id", IncidentController, :delete)
-   end
+    end
 
-   scope "/organization" do
-    post("/", OrganizationController, :create)
-    get("/all", OrganizationController, :get_all)
-    get("/attrs", OrganizationController, :get_by_attrs)
-    get("/:id", OrganizationController, :get)
-    put("/", OrganizationController, :update)
-    delete("/:id", OrganizationController, :delete)
- end
+    scope "/organization" do
+      post("/", OrganizationController, :create)
+      get("/all", OrganizationController, :get_all)
+      get("/attrs", OrganizationController, :get_by_attrs)
+      get("/:id", OrganizationController, :get)
+      put("/", OrganizationController, :update)
+      delete("/:id", OrganizationController, :delete)
+    end
 
     scope "/post" do
       post("/", PostController, :create)

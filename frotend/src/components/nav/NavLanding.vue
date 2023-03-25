@@ -73,7 +73,7 @@ const menuOptions = computed(() => [
         {
           to: "/",
         },
-        "Go Home"
+        "На Главную"
       ),
     key: "go-back-home",
     icon: renderIcon(HomeOutline),
@@ -114,7 +114,7 @@ const menuOptionsBottom = computed(() => [
             handleChangeTheme("dark");
           },
         },
-        "Dark"
+        "Тёмная тема"
       ),
     key: "Dark",
     icon: renderIcon(MoonOutline),
@@ -128,7 +128,7 @@ const menuOptionsBottom = computed(() => [
             handleChangeTheme("light");
           },
         },
-        "Light"
+        "Яркая тема"
       ),
     key: "Light",
     icon: renderIcon(Sunny),
@@ -141,7 +141,7 @@ const menuOptionsBottom = computed(() => [
         {
           onClick: () => handleLogout(),
         },
-        "Logout"
+        "Выйти из аккаунта"
       ),
     icon: renderIcon(LogOutOutline),
   },
