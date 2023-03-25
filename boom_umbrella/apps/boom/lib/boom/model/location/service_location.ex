@@ -63,14 +63,14 @@ defmodule Boom.Service.Location do
     end
   end
 
-  def get_by_sample(sample) do
+  def get_by_sample(%{"sample" => sample}) do
     locality_list =
       sample
       |> String.trim()
       |> get_localities_by_sample_of_name()
       |> Enum.map(fn i -> %{id: i.id, name: i.name, full_name: i.full_name} end)
 
-    {:ok, %{localities: locality_list}}
+    {:ok, locality_list}
   end
 
   defp get_localities_by_sample_of_name(sample_of_name) do
