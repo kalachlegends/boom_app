@@ -3,9 +3,9 @@ export const useMetaApp = (attrs = {}, appTitle = "TenantTracker") => {
   useMeta(() => {
     return {
       // whenever "title" from above changes, your meta will automatically update
-      title: attrs["title"] || "incident manager",
+      title: attrs["title"] || "Incident manager",
       titleTemplate: (title) => `${title} - ${appTitle}`,
-      ogTitle: attrs["og_title"] || "incident manager",
+      ogTitle: attrs["og_title"] || "Incident manager",
       meta: {
         description: {
           name: "description",
@@ -20,7 +20,7 @@ export const useMetaApp = (attrs = {}, appTitle = "TenantTracker") => {
         ogTitle: {
           property: "og:title",
           content: `${
-            attrs["title"] || "incident manager"
+            attrs["title"] || "Incident manager"
           } - ${appTitle}`,
           // optional; similar to titleTemplate, but allows templating with other meta properties
         },
