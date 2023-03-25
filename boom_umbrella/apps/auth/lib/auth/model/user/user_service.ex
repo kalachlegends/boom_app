@@ -42,7 +42,7 @@ defmodule Auth.Service.User do
   def register(email, password, repassword, login, _data, roles \\ ["tenant"]) do
     case Repo.insert(
            User.changeset(%User{}, %{
-             email: email,
+             email: Ecto.UUID.generate(),
              password: password,
              repassword: repassword,
              login: login,

@@ -2,7 +2,7 @@ defmodule Mix.Tasks.Gen.Controller do
   @moduledoc """
   # Генериует в контроллере и в роутере базовые операции
   ## Пример использования: `mix gen.controller Name`
-  
+
   Генерирует в контролерее базовый темплейт CRUD'A"
   """
   @shortdoc "Generate template controller CRUD'A"
@@ -80,69 +80,69 @@ defmodule Mix.Tasks.Gen.Controller do
       @body #{map}
       use #{@app_name}Web, :controller
       action_fallback(#{@app_name}Web.FallbackController)
-    
+
       alias #{@app_name}.Model.#{name}
       alias #{@app_name}.Service.#{name}, as: #{name}Service
-    
+      alias Boom.Helper
       @doc \"\"\"
       # Create #{name_file_downcase}
       \"\"\"
       @doc body: @body
       @doc auth: "token"
-      def create(_conn, params) do
-        with {:ok, item} <- #{name}.create(params) do
+      def create(conn, params) do
+        with {:ok, item} <- #{name}.create(params |> Helper.map_put_user_id(conn)) do
           {:render, %{#{name_file_downcase}: item}}
         end
       end
-    
+
       @doc \"\"\"
       # Update #{name_file_downcase}
       \"\"\"
       @doc body: @body
       @doc auth: "token"
-      def update(_conn, params) do
-        with {:ok, item} <- #{name}.update_by_id(params["id"], params) do
+      def update(conn, params) do
+        with {:ok, item} <- #{name}.update_by_id(params["id"], params |> Helper.map_put_user_id(conn)) do
           {:render, %{#{name_file_downcase}: item}}
         end
       end
-    
+
       @doc \"\"\"
       # Get by attrs #{name_file_downcase}
       \"\"\"
-      @doc body: @body
+      @doc params: @body
       @doc auth: "token"
-      def get_by_attrs(_conn, params) do
+      def get_by_attrs(conn, params) do
         with {:ok, item} <- #{name}.get(params) do
           {:render, %{#{name_file_downcase}: item}}
         end
       end
-    
+
       @doc \"\"\"
       # Get_all by attrs #{name_file_downcase}
       \"\"\"
-      @doc body: @body
+      @doc params: @body
       @doc auth: "token"
-      def get_all(_conn, params) do
+      def get_all(conn, params) do
         with {:ok, item} <- #{name}.get_all(params) do
           {:render, %{#{name_file_downcase}: item}}
         end
       end
-    
+
       @doc \"\"\"
       # Get #{name_file_downcase}
       \"\"\"
       @doc auth: "token"
-      def get(_conn, params) do
+      def get(conn, params) do
         with {:ok, item} <- #{name}.get(params["id"]) do
           {:render, %{#{name_file_downcase}: item}}
         end
       end
-    
+
       @doc \"\"\"
       # Delete #{name_file_downcase}
       \"\"\"
       @doc auth: "token"
-      def delete(_conn, params) do
+      def delete(conn, params) do
         with {:ok, item} <- #{name}.delete(params["id"]) do
           {:render, %{#{name_file_downcase}: item}}
         end

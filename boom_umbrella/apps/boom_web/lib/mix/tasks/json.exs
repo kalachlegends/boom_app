@@ -1,7 +1,6 @@
 %{
-  parent_id: "",
-  table_type: "",
-  body: "",
+  locations_list: "",
+  title: "",
   user_id: "",
-  comments_id: ""
+
 }
