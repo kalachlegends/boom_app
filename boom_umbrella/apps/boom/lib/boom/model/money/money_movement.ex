@@ -10,7 +10,6 @@ defmodule Boom.Model.MoneyMovement do
     field(:type, :string)
     field(:movement, :integer)
     field(:attrs, :map)
-
     timestamps()
   end
 

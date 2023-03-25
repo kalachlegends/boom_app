@@ -1,5 +1,5 @@
 defmodule Boom.Model.MoneyService do
-  alias Boom.Model.{MoneyMovement, Organization}
+  alias Boom.Model.{MoneyMovement, Organization, Money}
 
   import Ecto.Query
 
@@ -14,8 +14,8 @@ defmodule Boom.Model.MoneyService do
       end
 
     from(
-      mm in MoneyMovement,
-      join: org in Organization,
+      org in Organization,
+      join: mm in MoneyMovement,
       on: mm.org_id == org.id,
       where: fragment("CAST(? as DATE) BETWEEN ? AND ?", mm.inserted_at, ^start_date, ^end_date),
       select: %{
@@ -37,5 +37,26 @@ defmodule Boom.Model.MoneyService do
       list ->
         {:ok, list}
     end
+  end
+
+  def get_money_by_org_id(org_id) do
+    from(
+      org in Organization,
+      join: money in Money,
+      on: money.org_id == org.id,
+      preload: [:money],
+      where: org.id == ^org_id,
+      select: org
+    )
+    |> Boom.Repo.all()
+    |> case do
+      {:error, reason} ->
+        {:error, reason}
+
+      [] ->
+        {:ok, []}
+
+      list ->
+        {:ok, list}
   end
 end

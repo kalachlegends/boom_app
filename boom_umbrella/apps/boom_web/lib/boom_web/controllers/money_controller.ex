@@ -64,7 +64,7 @@ defmodule BoomWeb.MoneyController do
   """
   @doc auth: "token"
   def get(conn, params) do
-    with {:ok, item} <- Money.get(params["id"]) do
+    with {:ok, item} <- Boom.Model.MoneyService.get_money_by_org_id(params["id"]) do
       {:render, %{money: item}}
     end
   end

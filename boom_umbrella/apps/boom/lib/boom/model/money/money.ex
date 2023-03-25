@@ -7,7 +7,7 @@ defmodule Boom.Model.Money do
   schema "money" do
     field(:org_id, :binary_id)
     field(:cash, :map)
-
+    has_one(:organization, Boom.Model.Organization)
     timestamps()
   end
 
