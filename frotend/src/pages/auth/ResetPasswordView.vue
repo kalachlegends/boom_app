@@ -16,7 +16,7 @@
                         Войти
                     </button>
                     <div class="df-aic-jc-fx-c gap-10">
-                        <router-link to="/login" class="text-align-center width-80">Do you already have an account? Then come in!</router-link>
+                        <router-link to="/login" class="text-align-center width-80">У вас уже есть аккаунт? Можете войти здесь</router-link>
                     </div>
                 </form>
             </div> 

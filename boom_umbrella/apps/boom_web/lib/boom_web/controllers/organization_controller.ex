@@ -3,7 +3,9 @@ defmodule BoomWeb.OrganizationController do
   # Create organization -> CRUD
   """
   @body %{
-  
+    user_id: "",
+    locations_list: [],
+    title: ""
 }
 
   use BoomWeb, :controller
@@ -18,7 +20,8 @@ defmodule BoomWeb.OrganizationController do
   @doc body: @body
   @doc auth: "token"
   def create(conn, params) do
-    with {:ok, item} <- Organization.create(params |> Helper.map_put_user_id(conn)) do
+    with {:ok, item} <- Organization.create(params |> Helper.map_put_user_id(conn)) |> IO.inspect(label: "test create controller") do
+      # item = Map.merge(item, :kaneki, "Abay")
       {:render, %{organization: item}}
     end
   end
