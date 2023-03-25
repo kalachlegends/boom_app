@@ -103,7 +103,14 @@ defmodule BoomWeb.Router do
       delete("/:id", IncidentController, :delete)
    end
 
-
+   scope "/organization" do
+    post("/", OrganizationController, :create)
+    get("/all", OrganizationController, :get_all)
+    get("/attrs", OrganizationController, :get_by_attrs)
+    get("/:id", OrganizationController, :get)
+    put("/", OrganizationController, :update)
+    delete("/:id", OrganizationController, :delete)
+ end
 
     scope "/post" do
       post("/", PostController, :create)

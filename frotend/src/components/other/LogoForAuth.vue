@@ -3,6 +3,6 @@
     <div class="logo-vertical__image img-fluid">
       <img src="~assets/img/logo.svg" alt="" />
     </div>
-    <span>Boom App </span>
+    <span>TenantTracker</span>
   </a>
 </template>

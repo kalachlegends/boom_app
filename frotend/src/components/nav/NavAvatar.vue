@@ -74,6 +74,5 @@ export default {
 .n-avatar {
   cursor: pointer;
   color: black;
-  
 }
 </style>
