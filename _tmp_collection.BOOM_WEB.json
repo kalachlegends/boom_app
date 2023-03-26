@@ -1,0 +1,2426 @@
+{
+  "info": {
+    "_exporter_id": "UASdDSAgDFDASqweE",
+    "_postman_id": "UASdDSAgDF",
+    "name": "BOOM_WEB",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "index",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "frotend"
+              ],
+              "query": [],
+              "raw": "{{host}}/frotend/*path"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "PAGE CONTROLLER"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Link confirm email",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "confirm",
+                ":id",
+                ":number"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/confirm/id/number"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "get",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "confirm"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/confirm"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Link accept restore password",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "restore_password",
+                ":id",
+                ":number"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/restore_password/id/number"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Request restore password",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"email\": \"email\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"email\": \"email\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "request_restore_password"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/request_restore_password"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Post restore password",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"confirm_id\": \"\",\n  \"number\": \"\",\n  \"password\": \"1234\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"confirm_id\": \"\",\n  \"number\": \"\",\n  \"password\": \"1234\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "restore_password"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/restore_password"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Confrim ->"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Get views",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "views",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/views/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs views",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"parent_id\": \"write_id\",\n  \"table_type\": \"views\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"parent_id\": \"write_id\",\n  \"table_type\": \"views\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "views",
+                "all"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/views/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs views",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"parent_id\": \"write_id\",\n  \"table_type\": \"views\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"parent_id\": \"write_id\",\n  \"table_type\": \"views\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "views",
+                "attrs"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/views/attrs"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Views -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Create organization",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"locations_list\": [],\n  \"title\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"locations_list\": [],\n  \"title\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "organization"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/organization"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Delete organization",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "delete",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "organization",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/organization/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get organization",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "organization",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/organization/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs organization",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"locations_list\": [],\n  \"title\": \"\",\n  \"user_id\": \"\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "organization",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "locations_list",
+                  "value": []
+                },
+                {
+                  "key": "title",
+                  "value": ""
+                },
+                {
+                  "key": "user_id",
+                  "value": ""
+                }
+              ],
+              "raw": "{{host}}/api/version/organization/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs organization",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"locations_list\": [],\n  \"title\": \"\",\n  \"user_id\": \"\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "organization",
+                "attrs"
+              ],
+              "query": [
+                {
+                  "key": "locations_list",
+                  "value": []
+                },
+                {
+                  "key": "title",
+                  "value": ""
+                },
+                {
+                  "key": "user_id",
+                  "value": ""
+                }
+              ],
+              "raw": "{{host}}/api/version/organization/attrs"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Update organization",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"locations_list\": [],\n  \"title\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"locations_list\": [],\n  \"title\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "organization"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/organization"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create organization -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Create moneymovement",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"locations_list\": \"\",\n  \"title\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"locations_list\": \"\",\n  \"title\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/movement"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Delete moneymovement",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "delete",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/movement/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get moneymovement",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/movement/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs moneymovement",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"locations_list\": \"\",\n  \"title\": \"\",\n  \"user_id\": \"\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "locations_list",
+                  "value": ""
+                },
+                {
+                  "key": "title",
+                  "value": ""
+                },
+                {
+                  "key": "user_id",
+                  "value": ""
+                }
+              ],
+              "raw": "{{host}}/api/version/money/movement/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs moneymovement",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"locations_list\": \"\",\n  \"title\": \"\",\n  \"user_id\": \"\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement",
+                "attrs"
+              ],
+              "query": [
+                {
+                  "key": "locations_list",
+                  "value": ""
+                },
+                {
+                  "key": "title",
+                  "value": ""
+                },
+                {
+                  "key": "user_id",
+                  "value": ""
+                }
+              ],
+              "raw": "{{host}}/api/version/money/movement/attrs"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "get_mm_by_period",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement",
+                "period"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/movement/period"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Update moneymovement",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"locations_list\": \"\",\n  \"title\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"locations_list\": \"\",\n  \"title\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "movement"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/movement"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create moneymovement -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Create money",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"attrs\": {},\n  \"cash\": \"map\",\n  \"movement\": \"integer\",\n  \"org_id\": \"binary_id\",\n  \"type\": \"string\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"attrs\": {},\n  \"cash\": \"map\",\n  \"movement\": \"integer\",\n  \"org_id\": \"binary_id\",\n  \"type\": \"string\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Delete money",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "delete",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get money",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs money",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"attrs\": {},\n  \"cash\": \"map\",\n  \"movement\": \"integer\",\n  \"org_id\": \"binary_id\",\n  \"type\": \"string\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "all"
+              ],
+              "query": [
+                {
+                  "description": null,
+                  "key": "attrs",
+                  "value": null
+                },
+                {
+                  "key": "cash",
+                  "value": "map"
+                },
+                {
+                  "key": "movement",
+                  "value": "integer"
+                },
+                {
+                  "key": "org_id",
+                  "value": "binary_id"
+                },
+                {
+                  "key": "type",
+                  "value": "string"
+                }
+              ],
+              "raw": "{{host}}/api/version/money/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs money",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"attrs\": {},\n  \"cash\": \"map\",\n  \"movement\": \"integer\",\n  \"org_id\": \"binary_id\",\n  \"type\": \"string\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "attrs"
+              ],
+              "query": [
+                {
+                  "description": null,
+                  "key": "attrs",
+                  "value": null
+                },
+                {
+                  "key": "cash",
+                  "value": "map"
+                },
+                {
+                  "key": "movement",
+                  "value": "integer"
+                },
+                {
+                  "key": "org_id",
+                  "value": "binary_id"
+                },
+                {
+                  "key": "type",
+                  "value": "string"
+                }
+              ],
+              "raw": "{{host}}/api/version/money/attrs"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "get_by_org_id",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money",
+                "org",
+                ":org_id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money/org/org_id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Update money",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"attrs\": {},\n  \"cash\": \"map\",\n  \"movement\": \"integer\",\n  \"org_id\": \"binary_id\",\n  \"type\": \"string\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"attrs\": {},\n  \"cash\": \"map\",\n  \"movement\": \"integer\",\n  \"org_id\": \"binary_id\",\n  \"type\": \"string\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "money"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/money"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create money -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Create post",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "post"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/post"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Delete post",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "delete",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "post",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/post/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get post",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "post",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/post/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs post",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "post",
+                "all"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/post/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs post",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "post",
+                "attrs"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/post/attrs"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Update post",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "post"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/post"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create post -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Create incident",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"close_dateq\": \"utc_datetime\",\n  \"description\": \"string\",\n  \"location_address\": \"string\",\n  \"location_id\": \"integer\",\n  \"org_id\": \"id\",\n  \"priority\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"user_id\": \"binary_id\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"close_dateq\": \"utc_datetime\",\n  \"description\": \"string\",\n  \"location_address\": \"string\",\n  \"location_id\": \"integer\",\n  \"org_id\": \"id\",\n  \"priority\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"user_id\": \"binary_id\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/incident"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Delete incident",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "delete",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/incident/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get incident",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/incident/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs incident",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"close_dateq\": \"utc_datetime\",\n  \"description\": \"string\",\n  \"location_address\": \"string\",\n  \"location_id\": \"integer\",\n  \"org_id\": \"id\",\n  \"priority\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"user_id\": \"binary_id\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident",
+                "all"
+              ],
+              "query": [
+                {
+                  "key": "close_dateq",
+                  "value": "utc_datetime"
+                },
+                {
+                  "key": "description",
+                  "value": "string"
+                },
+                {
+                  "key": "location_address",
+                  "value": "string"
+                },
+                {
+                  "key": "location_id",
+                  "value": "integer"
+                },
+                {
+                  "key": "org_id",
+                  "value": "id"
+                },
+                {
+                  "key": "priority",
+                  "value": "string"
+                },
+                {
+                  "key": "status",
+                  "value": "string"
+                },
+                {
+                  "key": "title",
+                  "value": "string"
+                },
+                {
+                  "key": "user_id",
+                  "value": "binary_id"
+                }
+              ],
+              "raw": "{{host}}/api/version/incident/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs incident",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"close_dateq\": \"utc_datetime\",\n  \"description\": \"string\",\n  \"location_address\": \"string\",\n  \"location_id\": \"integer\",\n  \"org_id\": \"id\",\n  \"priority\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"user_id\": \"binary_id\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident",
+                "attrs"
+              ],
+              "query": [
+                {
+                  "key": "close_dateq",
+                  "value": "utc_datetime"
+                },
+                {
+                  "key": "description",
+                  "value": "string"
+                },
+                {
+                  "key": "location_address",
+                  "value": "string"
+                },
+                {
+                  "key": "location_id",
+                  "value": "integer"
+                },
+                {
+                  "key": "org_id",
+                  "value": "id"
+                },
+                {
+                  "key": "priority",
+                  "value": "string"
+                },
+                {
+                  "key": "status",
+                  "value": "string"
+                },
+                {
+                  "key": "title",
+                  "value": "string"
+                },
+                {
+                  "key": "user_id",
+                  "value": "binary_id"
+                }
+              ],
+              "raw": "{{host}}/api/version/incident/attrs"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Update incident",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"close_dateq\": \"utc_datetime\",\n  \"description\": \"string\",\n  \"location_address\": \"string\",\n  \"location_id\": \"integer\",\n  \"org_id\": \"id\",\n  \"priority\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"user_id\": \"binary_id\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"close_dateq\": \"utc_datetime\",\n  \"description\": \"string\",\n  \"location_address\": \"string\",\n  \"location_id\": \"integer\",\n  \"org_id\": \"id\",\n  \"priority\": \"string\",\n  \"status\": \"string\",\n  \"title\": \"string\",\n  \"user_id\": \"binary_id\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/incident"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "update_from_org",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "incident"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/incident"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create incident -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Get location by sample name",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"sample\": \"Караганда\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "location"
+              ],
+              "query": [
+                {
+                  "key": "sample",
+                  "value": "Караганда"
+                }
+              ],
+              "raw": "{{host}}/api/version/location"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create location -> CRUD"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "GET LIKE BY PARENT ID",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"parent_id\": \"write_id\",\n  \"type_parent\": \"novella\"\n}\n ``` \n\n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "like"
+              ],
+              "query": [
+                {
+                  "key": "parent_id",
+                  "value": "write_id"
+                },
+                {
+                  "key": "type_parent",
+                  "value": "novella"
+                }
+              ],
+              "raw": "{{host}}/api/version/like"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "info",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "like",
+                "info"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/like/info"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "REQUEST LIKE",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"parent_id\": \"write id\",\n  \"type_like\": \"like\",\n  \"type_parent\": \"novella\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"parent_id\": \"write id\",\n  \"type_like\": \"like\",\n  \"type_parent\": \"novella\"\n} \n ``` \n\n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "like"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/like"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "LIKE -> like"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "ALL IMAGE BY USER ID",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"limit\": \"10\",\n  \"page\": \"1\",\n  \"search_value\": {\n    \"description\": \"Поиск по имени изображения\",\n    \"value\": \"\"\n  },\n  \"table_type\": \"global\"\n}\n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "image",
+                "get_all"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "description": "Поиск по имени изображения",
+                  "key": "search_value",
+                  "value": ""
+                },
+                {
+                  "key": "table_type",
+                  "value": "global"
+                }
+              ],
+              "raw": "{{host}}/api/version/image/get_all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "CREATE IMAGE",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "upload_img"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/upload_img"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "RANDOM IMAGE",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n## Accept params: \n\r```\n\r{\n  \"img\": \"\"\n}\n ``` \n\n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "image",
+                "random"
+              ],
+              "query": [
+                {
+                  "key": "img",
+                  "value": ""
+                }
+              ],
+              "raw": "{{host}}/api/version/image/random"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "IMAGE -> CREATE/GET BY ID/ALL"
+    },
+    {
+      "description": "\n",
+      "item": [
+        {
+          "event": null,
+          "name": "Create comments",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "comments"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/comments"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Delete comments",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "delete",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "comments",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/comments/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get comments",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "comments",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/comments/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get_all by attrs comments",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "comments",
+                "all"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/comments/all"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Get by attrs comments",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "comments",
+                "attrs"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/comments/attrs"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "Update comments",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"body\": \"\",\n  \"comments_id\": \"\",\n  \"parent_id\": \"\",\n  \"table_type\": \"\",\n  \"user_id\": \"\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "put",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "comments"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/comments"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "Create comments -> CRUD"
+    },
+    {
+      "description": "\n\nLOGIN/REGISTER/AUTH_ME/SEARCH_KI\n",
+      "item": [
+        {
+          "event": null,
+          "name": "AUTH ME",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "me"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/me"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "GET BY ID",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "user",
+                ":id"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/user/id"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "GET USER LOGIN BY LOGIN",
+          "request": {
+            "auth": {},
+            "body": null,
+            "description": "\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "user",
+                "profile",
+                ":login"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/user/profile/login"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Get token\", function () {\n",
+                  "    var jsonData = pm.response.json();",
+                  "    let bearerToken = jsonData.token;",
+                  "    pm.collectionVariables.set(\"token\", bearerToken);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "name": "LOGIN",
+          "request": {
+            "auth": {},
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"login\": \"test\",\n  \"password\": \"1234\"\n}"
+            },
+            "description": "## Accepts JSON: \n\r ``` \n\r{\n  \"login\": \"test\",\n  \"password\": \"1234\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "login"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/login"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "PROFILE EDIT",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"todo\": \"todo\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"todo\": \"todo\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "user",
+                "profile_edit"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/user/profile_edit"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "REGISTER",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": {
+              "mode": "raw",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              },
+              "raw": "{\n  \"email\": \"test@gmail.com\",\n  \"login\": \"test\",\n  \"password\": \"1234\",\n  \"repassword\": \"1234\"\n}"
+            },
+            "description": "## Accept auth: token \n## Accepts JSON: \n\r ``` \n\r{\n  \"email\": \"test@gmail.com\",\n  \"login\": \"test\",\n  \"password\": \"1234\",\n  \"repassword\": \"1234\"\n} \n ``` \n\n",
+            "header": [],
+            "method": "post",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "auth",
+                "register"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/auth/register"
+            }
+          },
+          "response": []
+        },
+        {
+          "event": null,
+          "name": "SEARCH BY LOGIN",
+          "request": {
+            "auth": {
+              "bearer": [
+                {
+                  "key": "token",
+                  "type": "string",
+                  "value": "{{token}}"
+                }
+              ],
+              "type": "bearer"
+            },
+            "body": null,
+            "description": "## Accept auth: token \n\n",
+            "header": [],
+            "method": "get",
+            "url": {
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "api",
+                ":version",
+                "user",
+                "search_by_login",
+                ":login"
+              ],
+              "query": [],
+              "raw": "{{host}}/api/version/user/search_by_login/login"
+            }
+          },
+          "response": []
+        }
+      ],
+      "name": "User -> LOGIN/REGISTER/AUTH_ME/SEARCH_LOGIN"
+    }
+  ],
+  "variable": [
+    {
+      "key": "host",
+      "type": "string",
+      "value": "http://localhost:6002/"
+    },
+    {
+      "key": "token",
+      "type": "string",
+      "value": "write token"
+    }
+  ]
+}
