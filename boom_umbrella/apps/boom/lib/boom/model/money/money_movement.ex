@@ -9,14 +9,17 @@ defmodule Boom.Model.MoneyMovement do
     field(:cash, :map)
     field(:type, :string)
     field(:movement, :integer)
+    # field(:incident_id, :binary_id)
     field(:attrs, :map)
+    belongs_to(:incident, Boom.Model.Incident)
+
     timestamps()
   end
 
   use Boom.Use.RepoBase, repo: Boom.Repo
 
   @doc false
-  @required_fields ~w(org_id cash type movement attrs)a
+  @required_fields ~w(org_id cash type movement incident_id attrs)a
   @optional_fields ~w()a
   def changeset(model, attrs) do
     model
