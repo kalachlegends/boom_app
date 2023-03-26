@@ -10,7 +10,7 @@ export const useRegister = () => {
     login: "",
     password: "",
     repassword: "",
-    roles: ["tenet"],
+    roles: ["tenant"],
     location: {
       location_id: "",
       address: "",
