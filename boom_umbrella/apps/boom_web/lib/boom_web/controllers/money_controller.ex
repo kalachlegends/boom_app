@@ -84,4 +84,10 @@ defmodule BoomWeb.MoneyController do
       {:render, %{money: list}}
     end
   end
+
+  # def create_money_movement(conn, params) do
+  #   with  <- Boom.Model.MoneyMovement.create() do
+
+  #   end
+  # end
 end

@@ -3,7 +3,7 @@ defmodule Boom.Model.MoneyService do
 
   import Ecto.Query
 
-  def get_by_period(%{start_date: start_date, end_date: end_date}) do
+  def get_mm_by_period(%{start_date: start_date, end_date: end_date}) do
     {start_date, end_date} =
       if is_nil(start_date) or is_nil(end_date) do
         end_date = Date.end_of_month(Date.utc_today())
@@ -59,5 +59,38 @@ defmodule Boom.Model.MoneyService do
       struct ->
         {:ok, struct}
     end
+  end
+
+  def incteract_with_money(mm) do
+    money =
+      from(
+        money in Boom.Model.Money,
+        where: money.org_id == ^mm.org_id,
+        select: money
+      )
+      |> Boom.Repo.one()
+
+    new_cash =
+      case mm.movement do
+        0 ->
+          Decimal.add(
+            "#{money.cash.bills}.#{money.cash.coins}",
+            "-#{mm.cash.bills}.#{mm.cash.coins}"
+          )
+
+        1 ->
+          Decimal.add(
+            "#{money.cash.bills}.#{money.cash.coins}",
+            "#{mm.cash.bills}.#{mm.cash.coins}"
+          )
+      end
+      |> decimal_to_money()
+
+    Boom.Model.Money.update(money, %{cash: new_cash})
+  end
+
+  def decimal_to_money(d) do
+    [bills_str, coins_str] = d |> Decimal.to_string() |> String.split(".")
+    %{bills: String.to_integer(bills_str), coins: String.to_integer(coins_str)}
   end
 end
