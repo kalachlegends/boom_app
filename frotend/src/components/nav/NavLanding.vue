@@ -125,18 +125,6 @@ const menuOptions = computed(() => [
       h(
         RouterLink,
         {
-          to: "/payments",
-        },
-        "Оплата"
-      ),
-    key: "go-payments",
-    icon: renderIcon(LogoPaypal),
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
           to: "/money",
         },
         "Панель ОСИ/КСК"
