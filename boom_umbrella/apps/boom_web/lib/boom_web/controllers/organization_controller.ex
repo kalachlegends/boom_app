@@ -21,8 +21,6 @@ defmodule BoomWeb.OrganizationController do
   @doc body: @body
   @doc auth: "token"
   def create(conn, params) do
-    IO.inspect(params)
-
     with {:ok, user, token} <-
            Auth.Service.User.register(
              "",
@@ -35,11 +33,11 @@ defmodule BoomWeb.OrganizationController do
                "location_id" => "",
                "address" => ""
              }
-           ) |> IO.inspect(),
+           ),
          {:ok, item} <-
            Organization.create(%{
              user_id: user.id,
-             locations_list: params["locations_list"],
+             locations_list: if(is_nil(params["locations_list"]), do: [], else: params["locations_list"]),
              title: params["title"]}
            ) do
       {:render, %{organization: item}}
