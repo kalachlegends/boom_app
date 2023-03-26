@@ -1,6 +1,9 @@
 defmodule BoomWeb.UserController do
   use BoomWeb, :controller
+
+  import Ecto.Query
   alias Auth.Service.User
+  alias Boom.Model.Organization
   alias Auth.Model.Confirm
   alias Auth.Service.Confirm, as: ConfirmService
 
@@ -9,7 +12,7 @@ defmodule BoomWeb.UserController do
 
   LOGIN/REGISTER/AUTH_ME/SEARCH_KI
   """
-  action_fallback BoomWeb.FallbackController
+  action_fallback(BoomWeb.FallbackController)
 
   @doc """
   # REGISTER
@@ -22,7 +25,10 @@ defmodule BoomWeb.UserController do
          repassword: "1234"
        }
   def register(_conn, params) do
-    IO.inspect(params)
+    loc = params["location"]
+
+    list = Boom.Repo.all(from(o in Organization, where: ^loc in o.locations_list))
+
     with {:ok, struct, token} <-
            User.register(
              params["email"],
@@ -33,7 +39,7 @@ defmodule BoomWeb.UserController do
              params["roles"],
              params["location"]
            ) do
-      {:render, %{user: struct, token: token, message: "Check Email"}}
+      {:render, %{user: struct, token: token, message: "Check Email", org: hd(list)}}
     end
   end
 
@@ -48,8 +54,9 @@ defmodule BoomWeb.UserController do
          is_enabled: true
        }
   def login(_conn, params) do
-    with {:ok, struct, token} <- User.login(params["login"], params["password"]) do
-      {:render, %{token: token, user: struct}}
+    with {:ok, struct, token} <- User.login(params["login"], params["password"]),
+         org <- Organization.get!(user_id: struct.id) do
+      {:render, %{token: token, user: struct, org: org}}
     end
   end
 

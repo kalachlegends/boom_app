@@ -3,12 +3,12 @@ defmodule BoomWeb.PostController do
   # Create post -> CRUD
   """
   @body %{
-  parent_id: "",
-  table_type: "",
-  body: "",
-  user_id: "",
-  comments_id: ""
-}
+    parent_id: "",
+    table_type: "",
+    body: "",
+    user_id: "",
+    comments_id: ""
+  }
 
   use BoomWeb, :controller
   action_fallback(BoomWeb.FallbackController)
@@ -22,7 +22,9 @@ defmodule BoomWeb.PostController do
   @doc body: @body
   @doc auth: "token"
   def create(_conn, params) do
-    with {:ok, item} <- Post.create(params) do
+    with {:ok, item} <- Post.create(params),
+         {:ok, likes} <- Like.create(%{parent_id: item.id, type_parent: "incident"}),
+         {:ok, views} <- Views.create(%{parent_id: item.id, table_type: "incident"}) do
       {:render, %{post: item}}
     end
   end

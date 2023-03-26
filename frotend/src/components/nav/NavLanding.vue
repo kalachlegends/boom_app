@@ -66,7 +66,10 @@ const { handleLogout } = useLogout();
 function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) });
 }
+const roles = JSON.parse(localStorage.getItem("roles"))
 
+const isOrg = computed(() => roles.some((p) =>  p == "osi" || p == "ksk"))
+const isMan = computed(() => roles.some((p) =>  p == "manager"))
 const menuOptions = computed(() => [
   {
     label: () =>
@@ -99,10 +102,24 @@ const menuOptions = computed(() => [
         {
           to: "/money",
         },
-        "Панель КСК"
+        "Панель ОСИ/КСК"
       ),
     key: "go-ksk",
-    icon: renderIcon(Analytics),
+    show: isOrg.value,
+    icon: renderIcon(),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: "/manage",
+        },
+        "Создание организации"
+      ),
+    key: "go-manage",
+    show: isMan.value,
+    icon: renderIcon(),
   },
 ]);
 

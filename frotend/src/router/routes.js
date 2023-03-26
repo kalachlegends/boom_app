@@ -19,6 +19,7 @@ const routes = [
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
+      
     },
   },
   {
@@ -28,6 +29,17 @@ const routes = [
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
+      permissions: ["osi", "ksk"]
+    },
+  },
+  {
+    path: "/manage",
+    name: "manage",
+    component: () => import("src/pages/manager/ManagerView.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMain",
+      permissions: ["manager"]
     },
   },
 

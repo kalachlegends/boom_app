@@ -1,10 +1,15 @@
 import { deepFind } from "./other/deepFind";
 export const requiredRules = (message, attrs = {}) => {
-  return {
+  const object ={
     required: true,
     message: message || "Обязательный параметр",
     trigger: attrs["trigger"] || ["input", "blur"],
-  };
+  }
+  if (attrs["type"] == "array") {
+    object["type"] = "array"
+  }
+  console.log(object)
+  return object;
 };
 export const validateNumber = (min, max) => {
   return function (role, value) {
