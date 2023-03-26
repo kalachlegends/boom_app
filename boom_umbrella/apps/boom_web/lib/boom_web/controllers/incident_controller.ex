@@ -18,7 +18,7 @@ defmodule BoomWeb.IncidentController do
   action_fallback(BoomWeb.FallbackController)
 
   import Ecto.Query
-  alias Boom.Model.{Incident, Organization, Like}
+  alias Boom.Model.{Incident, Organization, Like, Views}
   alias Auth.Model.User
   alias Boom.Service.Incident, as: IncidentService
   alias Boom.Helper
@@ -44,6 +44,9 @@ defmodule BoomWeb.IncidentController do
              |> Helper.map_put_user_id(conn)
            ),
          {:ok, likes} <- Like.create(%{parent_id: item.id, type_parent: "incident"}) do
+           Incident.create(params |> Map.put("location_id", user.location_id) |> Map.put("org_id", org.id) |> IO.inspect |> Helper.map_put_user_id(conn)),
+         {:ok, likes} <- Like.create(%{parent_id: item.id, type_parent: "incident"}),
+         {:ok, views} <- Views.create(%{parent_id: item.id, table_type: "incident"}) do
       {:render, %{incident: item}}
     end
   end
