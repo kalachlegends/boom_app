@@ -115,7 +115,7 @@ const priorityFilter = ref("none")
 const orgFilter = ref([])
 const filtersOrgs = ref([])
 const type = ref("passive");
-const filters = ref({priority: "none", organizations: []})
+const filters = ref({ priority: "none", organizations: [] })
 const incidentListActive = computed(() =>
   inscidentList.value.filter((el) => el.status == "active" && (el.priority == priorityFilter.value || priorityFilter.value == "none") && (orgFilter.value.includes(el.org_id) || orgFilter.value.length == 0))
 );
@@ -130,7 +130,7 @@ onMounted(async () => {
   const { data } = await axios.get("/incident/all");
   const respOrg = await axios.get("/organization/all");
   inscidentList.value = data.incident;
-  filtersOrgs.value = respOrg.data.organization.map((elem) => {return {label: elem.title, value: elem.id}})
+  filtersOrgs.value = respOrg.data.organization.map((elem) => { return { label: elem.title, value: elem.id } })
   console.log([inscidentList.value, orgFilter.value])
 });
 const filtersPriority = [
@@ -167,21 +167,19 @@ const onDragStart = (item) => {
   itemDrag.value = item;
 };
 const onDragEnd = async (is_manager) => {
-  if ((org.id == itemDrag.value.id) || (is_manager && roles.includes("manager"))) {
-    console.log(type);
-    const item = inscidentList.value.find((el) => el.id == itemDrag.value.id);
+  console.log(type);
+  const item = inscidentList.value.find((el) => el.id == itemDrag.value.id);
 
-    item.status = type.value;
-    console.log(item);
-    await axios
-      .put("/incident", item)
-      .then(() => {
-        message.success("Успешно сделали!");
-      })
-      .catch((e) => {
-        console.log(e.responce);
-      });
-    }
+  item.status = type.value;
+  console.log(item);
+  await axios
+    .put("/incident", item)
+    .then(() => {
+      message.success("Успешно сделали!");
+    })
+    .catch((e) => {
+      console.log(e.responce);
+    });
 };
 const isManager = () => {
   if (roles.includes("manager")) {
@@ -194,7 +192,7 @@ const onDragEnter = (typeREf) => {
 };
 </script>
 <style  lang="scss">
-.n-card > .n-card__content {
+.n-card>.n-card__content {
   flex: 1;
   display: flex;
   gap: 10px;
