@@ -6,7 +6,7 @@ const routes = [
   {
     path: "/",
     name: "landing",
-    component: () => import("src/pages/HomeView.vue"),
+    component: () => import("src/pages/dashboard/DashBoard.vue"),
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
@@ -19,7 +19,6 @@ const routes = [
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
-      
     },
   },
   {
@@ -29,7 +28,7 @@ const routes = [
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
-      permissions: ["osi", "ksk"]
+      permissions: ["osi", "ksk"],
     },
   },
   {
