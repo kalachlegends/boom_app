@@ -8,6 +8,8 @@ defmodule Auth.Model.User do
     field(:email, :string)
     field(:password, :string)
     field(:login, :string)
+    field(:location_address, :string)
+    field(:location_id, :id)
     field(:repassword, :string, virtual: true)
     field(:is_registred, :boolean, default: false)
     field(:roles, {:array, :string}, default: ["tenant"])
@@ -18,9 +20,8 @@ defmodule Auth.Model.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:email, :password, :data, :login, :repassword, :is_registred, :roles])
-    |> validate_required([:email, :password, :data, :login, :roles])
-    |> validate_format(:email, ~r/@/, message: "isn't valid email")
+    |> cast(attrs, [:email, :password, :data, :login, :repassword, :is_registred, :roles, :location_id, :location_address])
+    |> validate_required([:password, :data, :login, :roles])
     |> validate_length(:password,
       min: 3,
       max: 32

@@ -7,6 +7,8 @@ defmodule Boom.Model.Organization do
     field(:locations_list, {:array, :integer})
     field(:title, :string)
     field(:user_id, :binary_id)
+    # field(:money_id, :binary_id)
+    belongs_to :money, Boom.Model.Money
 
     timestamps()
   end
@@ -14,7 +16,7 @@ defmodule Boom.Model.Organization do
   use(Boom.Use.RepoBase, repo: Boom.Repo)
 
   @doc false
-  @required_fields ~w(locations_list title user_id)a
+  @required_fields ~w(locations_list title user_id money_id)a
   @optional_fields ~w()a
   def changeset(model, attrs) do
     model

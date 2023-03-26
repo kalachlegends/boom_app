@@ -1,5 +1,5 @@
 <template>
-  <n-card title="Card" hoverable>
+  <n-card title="Card" size="small">
     Card Content
   </n-card>
 </template>
@@ -15,7 +15,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.n-card {
-  max-width: 300px;
-}
 </style>

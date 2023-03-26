@@ -10,10 +10,13 @@ defenum(TreeTypeDelete, :tree_type_delete, [:delete, :not_delete])
 defenum(TreeType, :tree_type, [:global, :tree])
 
 defenum(LikeType, :like_type, [:like, :dis_like, :not_like])
-defenum(TableType, :table_type, [:post, :novella, :user, :comments, :tree, :global])
+defenum(TableType, :table_type, [:post, :novella, :user, :incident, :global])
 
 defenum(ImageType, :table_type, [:novella_avatar, :novella_img, :global])
 defenum(PostType, :post_type, [:user, :global])
 
 # Public Novella
 defenum(PublicType, :public_type, [:public])
+
+defenum(IncidentStatus, :status_type, [:backlog, :passive, :active, :completed, :deleted])
+defenum(IncidentPriority, :priority_type, [:low, :medium, :high])

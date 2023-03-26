@@ -58,7 +58,6 @@ defmodule Boom.Service.Location do
 
         Map.merge(location, %{full_name: ru})
       end)
-      |> IO.inspect()
       |> Enum.each(&Location.add(&1))
     end
   end
@@ -83,7 +82,8 @@ defmodule Boom.Service.Location do
     query =
       from(
         l in Location,
-        select: %{id: l.id, full_name: l.full_name, name: l.name}
+        select: %{id: l.id, full_name: l.full_name, name: l.name},
+        limit: 10
       )
 
     if is_nil(sample_of_name) or sample_of_name == "" do
