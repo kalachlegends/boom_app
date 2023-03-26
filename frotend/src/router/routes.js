@@ -32,6 +32,16 @@ const routes = [
       permissions: ["osi", "ksk"]
     },
   },
+  {
+    path: "/manage",
+    name: "manage",
+    component: () => import("src/pages/manager/ManagerView.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMain",
+      permissions: ["manager"]
+    },
+  },
 
   {
     path: "/profile/:login",
