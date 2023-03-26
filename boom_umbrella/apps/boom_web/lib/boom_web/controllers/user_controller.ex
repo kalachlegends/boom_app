@@ -6,10 +6,11 @@ defmodule BoomWeb.UserController do
   alias Boom.Model.Organization
   alias Auth.Model.Confirm
   alias Auth.Service.Confirm, as: ConfirmService
+  alias Boom.Model.Location
 
   @moduledoc """
   # User -> LOGIN/REGISTER/AUTH_ME/SEARCH_LOGIN
-
+  
   LOGIN/REGISTER/AUTH_ME/SEARCH_KI
   """
   action_fallback(BoomWeb.FallbackController)
@@ -27,8 +28,6 @@ defmodule BoomWeb.UserController do
   def register(_conn, params) do
     loc = params["location"]
 
-    list = Boom.Repo.all(from(o in Organization, where: ^loc in o.locations_list))
-
     with {:ok, struct, token} <-
            User.register(
              params["email"],
@@ -39,7 +38,7 @@ defmodule BoomWeb.UserController do
              params["roles"],
              params["location"]
            ) do
-      {:render, %{user: struct, token: token, message: "Check Email", org: hd(list)}}
+      {:render, %{user: struct, token: token, message: "Check Email"}}
     end
   end
 
@@ -56,7 +55,11 @@ defmodule BoomWeb.UserController do
   def login(_conn, params) do
     with {:ok, struct, token} <- User.login(params["login"], params["password"]),
          org <- Organization.get!(user_id: struct.id) do
-      {:render, %{token: token, user: struct, org: org}}
+      my_org =
+        from(org in Organization, where: ^struct.location_id in org.locations_list)
+        |> Boom.Repo.all()
+
+      {:render, %{token: token, user: struct, org: org, my_org: my_org}}
     end
   end
 

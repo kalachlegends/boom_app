@@ -37,6 +37,13 @@ defmodule BoomWeb.IncidentController do
              Boom.Repo.all(from(o in Organization, where: ^user.location_id in o.locations_list))
            ),
          {:ok, item} <-
+           Incident.create(
+             params
+             |> Map.put("location_id", user.location_id)
+             |> Map.put("org_id", org.id)
+             |> Helper.map_put_user_id(conn)
+           ),
+         {:ok, likes} <- Like.create(%{parent_id: item.id, type_parent: "incident"}) do
            Incident.create(params |> Map.put("location_id", user.location_id) |> Map.put("org_id", org.id) |> IO.inspect |> Helper.map_put_user_id(conn)),
          {:ok, likes} <- Like.create(%{parent_id: item.id, type_parent: "incident"}),
          {:ok, views} <- Views.create(%{parent_id: item.id, table_type: "incident"}) do
@@ -51,7 +58,10 @@ defmodule BoomWeb.IncidentController do
   @doc auth: "token"
   def update(conn, params) do
     with {:ok, item} <-
-           Incident.update_by_id(params["id"], params |> Helper.map_put_user_id(conn)) do
+           Incident.update_by_id(
+             params["id"],
+             params |> Helper.map_put_user_id(conn) |> Map.delete("close_dateq")
+           ) do
       {:render, %{incident: item}}
     end
   end
