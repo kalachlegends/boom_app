@@ -26,11 +26,10 @@ defmodule BoomWeb.IncidentController do
   """
   @doc body: @body
   @doc auth: "token"
-  def create(conn, params) do #Timex.from_unix(params["close_dateq"], :millisecond)
+  # Timex.from_unix(params["close_dateq"], :millisecond)
+  def create(conn, params) do
     with {:ok, item} <-
-           Incident.create(
-             params |> Helper.map_put_user_id(conn)
-           ) do
+           Incident.create(params |> Helper.map_put_user_id(conn)) do
       {:render, %{incident: item}}
     end
   end
@@ -42,7 +41,10 @@ defmodule BoomWeb.IncidentController do
   @doc auth: "token"
   def update(conn, params) do
     with {:ok, item} <-
-           Incident.update_by_id(params["id"], params |> Helper.map_put_user_id(conn)) do
+           Incident.update_by_id(
+             params["id"],
+             params |> Helper.map_put_user_id(conn) |> Map.delete("close_dateq")
+           ) do
       {:render, %{incident: item}}
     end
   end
@@ -90,14 +92,10 @@ defmodule BoomWeb.IncidentController do
   end
 
   def update_from_manger(conn, params) do
-    opts = %{
-
-    }
+    opts = %{}
   end
 
   def update_from_org(conn, params) do
-    opts = %{
-
-    }
+    opts = %{}
   end
 end
