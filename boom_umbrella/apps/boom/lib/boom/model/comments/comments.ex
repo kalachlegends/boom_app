@@ -7,7 +7,8 @@ defmodule Boom.Model.Comments do
     field(:body, :string)
     field(:parent_id, Ecto.UUID)
     field(:table_type, :string)
-    field(:user_id, Ecto.UUID)
+
+    belongs_to(:user, Auth.Model.User)
 
     timestamps()
   end

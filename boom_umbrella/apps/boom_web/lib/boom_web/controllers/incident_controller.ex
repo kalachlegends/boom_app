@@ -41,7 +41,6 @@ defmodule BoomWeb.IncidentController do
              params
              |> Map.put("location_id", user.location_id)
              |> Map.put("org_id", org.id)
-             |> IO.inspect()
              |> Helper.map_put_user_id(conn)
            ),
          {:ok, likes} <- Like.create(%{parent_id: item.id, type_parent: "incident"}) do

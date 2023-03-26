@@ -16,45 +16,50 @@
         :draggable="canDrag(item)"
         @click="handleShow(item)"
         @drag="onDragStart(item)"
-        
+        @dragend="onDragEnd"
         />
            
       </n-card>
 
-        <n-card title="Неактивные" size="medium" @dragenter="onDragEnter('passive')"   @dragend="onDragEnd"  class="tw-h-full tw-gap-3 tw-flex tw-flex-col">
+        <n-card title="Неактивные" size="medium" @dragenter="onDragEnter('passive')"     class="tw-h-full tw-gap-3 tw-flex tw-flex-col">
         <Card    
           
         :objectCard="item " v-for="item in incidentListPassive"
         :draggable="canDrag(item)"
         @click="handleShow(item)"
         @drag="onDragStart(item)"
-     
+        @dragend="onDragEnd"
         />
            
         </n-card>
-        <n-card @dragenter="onDragEnter('active')" @dragend="onDragEnd"  title="Активные" size="medium" class="tw-h-full"> 
+        <n-card @dragenter="onDragEnter('active')"  title="Активные" size="medium" class="tw-h-full"> 
             <Card    
-            draggable="true"
+            :draggable="canDrag(item)"
             :objectCard="item " v-for="item in incidentListActive"
             @drag="onDragStart(item)"
             @click="handleShow(item)"
+            @dragend="onDragEnd"
              />
                
         </n-card>
-        <n-card @dragenter="onDragEnter('completed')" @dragend="onDragEnd" title="Готовые" size="medium" class="tw-h-full"> 
+        <n-card @dragenter="onDragEnter('completed')" title="Готовые" size="medium" class="tw-h-full"> 
           <Card    
-          draggable="true"
+      
+          :draggable="canDrag(item)"
           :objectCard="item " v-for="item in incidentListCompleted"
           @drag="onDragStart(item)"
+          @dragend="onDragEnd"
           @click="handleShow(item)"
            />
         </n-card>
-        <n-card @dragenter="onDragEnter('deleted')" @dragend="onDragEnd" title="Удалённые" size="medium" class="tw-h-full"> 
+        <n-card @dragenter="onDragEnter('deleted')"  title="Удалённые" size="medium" class="tw-h-full"> 
           <Card    
-          draggable="true"
+    
+          :draggable="canDrag(item)"
           :objectCard="item " v-for="item in incidentListDeleted"
           @drag="onDragStart(item)"
           @click="handleShow(item)"
+          @dragend="onDragEnd"
            />
         </n-card>
       </div>
@@ -88,7 +93,7 @@ import Comment from "../comments/Comment.vue";
 import { useMessage } from "naive-ui";
 const itemDrag = ref({});
 const message = useMessage();
-const org = localStorage.getItem("org");
+const org = JSON.parse(localStorage.getItem("org")) || {};
 const show = ref(false);
 const inscidentList = ref([]);
 const incidentListPassive = computed(() =>
@@ -115,11 +120,10 @@ onMounted(async () => {
 });
 
 const canDrag = (item) => {
-  if (org) {
-    if (JSON.parse(org).id == item.org_id) {
-      return true;
-    }
+  if (org.id == item.org_id) {
+    return true;
   }
+
   return false;
 };
 const handleShow = (item) => {
@@ -134,20 +138,16 @@ const onDragEnd = async () => {
   console.log(type);
   const item = inscidentList.value.find((el) => el.id == itemDrag.value.id);
 
-  if (org) {
-    if (JSON.parse(org).id == item.org_id) {
-      item.status = type.value;
-      console.log(item);
-      axios
-        .put("/incident", item)
-        .then(() => {
-          message.success("Успешно сделали!");
-        })
-        .catch((e) => {
-          console.log(e.responce);
-        });
-    }
-  }
+  item.status = type.value;
+  console.log(item);
+  await axios
+    .put("/incident", item)
+    .then(() => {
+      message.success("Успешно сделали!");
+    })
+    .catch((e) => {
+      console.log(e.responce);
+    });
 };
 const onDragEnter = (typeREf) => {
   type.value = typeREf;

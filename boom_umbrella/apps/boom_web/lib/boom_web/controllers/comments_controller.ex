@@ -15,15 +15,17 @@ defmodule BoomWeb.CommentsController do
 
   alias Boom.Model.Comments
   alias Boom.Service.Comments, as: CommentsService
+  alias Boom.Helper
 
   @doc """
   # Create comments
   """
   @doc body: @body
   @doc token: "token"
-  def create(_conn, params) do
-    with {:ok, item} <- Comments.create(params) do
-      {:render, %{comments: item}}
+  def create(conn, params) do
+    with {:ok, item} <- Comments.create(params |> Helper.map_put_user_id(conn)),
+         {:ok, user} <- Auth.Model.User.get(item.user_id) do
+      {:render, %{comments: item |> Map.put("user", user)}}
     end
   end
 
@@ -54,8 +56,15 @@ defmodule BoomWeb.CommentsController do
   """
   @doc body: @body
   @doc token: "token"
-  def get_all(_conn, params) do
-    with {:ok, item} <- Comments.get_all(params) do
+  def get_all(conn, params) do
+    with {:ok, item} <-
+           Comments.get_all(
+             Map.merge(params, %{
+               use_query: %{
+                 preload: [:user]
+               }
+             })
+           ) do
       {:render, %{comments: item}}
     end
   end

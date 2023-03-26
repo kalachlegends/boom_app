@@ -28,6 +28,7 @@ export const useLogin = () => {
           localStorage.setItem("user", JSON.stringify(res.data.user));
           localStorage.setItem("roles", JSON.stringify(res.data.user.roles));
           localStorage.setItem("org", JSON.stringify(res.data.org));
+          localStorage.setItem("my_org", JSON.stringify(res.data.my_org));
           console.log(res.data);
           // localStorage.setItem("my_org", JSON.stringify(res.data.org));
 

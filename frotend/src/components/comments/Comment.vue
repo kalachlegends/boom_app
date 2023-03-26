@@ -9,7 +9,7 @@
     <template #header>
       Время - {{item.inserted_at}}
     </template>
-    <template #avatar>Говно</template>
+    <template #avatar>{{ item.user.data.name || "Анонимус" }}</template>
  
   </n-thing>
 
