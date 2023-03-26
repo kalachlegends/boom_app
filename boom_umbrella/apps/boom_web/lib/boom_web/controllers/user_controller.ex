@@ -1,6 +1,7 @@
 defmodule BoomWeb.UserController do
   use BoomWeb, :controller
   alias Auth.Service.User
+  alias Boom.Model.Organization
   alias Auth.Model.Confirm
   alias Auth.Service.Confirm, as: ConfirmService
 
@@ -48,8 +49,9 @@ defmodule BoomWeb.UserController do
          is_enabled: true
        }
   def login(_conn, params) do
-    with {:ok, struct, token} <- User.login(params["login"], params["password"]) do
-      {:render, %{token: token, user: struct}}
+    with {:ok, struct, token} <- User.login(params["login"], params["password"]),
+         org <- Organization.get!(user_id: struct.id) do
+      {:render, %{token: token, user: struct, org: org}}
     end
   end
 
