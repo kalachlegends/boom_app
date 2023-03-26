@@ -58,6 +58,8 @@ import {
   MoonOutline,
   Sunny,
   HomeOutline,
+  ClipboardOutline,
+  Analytics,
 } from "@vicons/ionicons5";
 import { RouterLink } from "vue-router";
 const { handleLogout } = useLogout();
@@ -91,7 +93,7 @@ const menuOptions = computed(() => [
         "Доска"
       ),
     key: "go-dashboard",
-    icon: renderIcon(HomeOutline),
+    icon: renderIcon(ClipboardOutline),
   },
   {
     label: () =>
@@ -157,7 +159,7 @@ const menuOptionsBottom = computed(() => [
             handleChangeTheme("light");
           },
         },
-        "Яркая тема"
+        "Светлая тема"
       ),
     key: "Light",
     icon: renderIcon(Sunny),

@@ -8,7 +8,7 @@
     :columns="columns"
     :data="data"
     :pagination="pagination"
-    :bordered="false"
+    :bordered="true"
   />
   <!-- текущий месяц -->
 </template>
@@ -35,7 +35,7 @@ const createColumns = ({ play }) => {
 };
 
 const data = [
-  { no: 3, title: "Wonderwall", length: "4:18" },
+  // { no: 3, title: "Wonderwall", length: "4:18" },
 ];
 
 export default defineComponent({
