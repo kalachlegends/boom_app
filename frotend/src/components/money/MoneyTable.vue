@@ -1,13 +1,9 @@
 <template>
-  <!-- <div class="tw-flex tw-justify-between">
-    <div>Имя</div>
-    <div>КОлво денег</div>
-  </div> -->
   <div class="tw-flex tw-justify-between tw-mt-5">
-    <n-thing :title="'Общаая сумма'" :description="movementSum" />
+    <n-thing :title="'Общая сумма'" :description="movementSum" />
     <n-thing :title="'Общая сумма внесения'" :description="movementSumType1" />
     <n-thing
-      :title="'Общаая сумма вычетания'"
+      :title="'Общая сумма вычетания'"
       :description="movementSumType0"
     />
   </div>
@@ -17,8 +13,7 @@
     :bordered="true"
     class="tw-mt-3"
   />
-  <canvas id="chart" ref="chart"></canvas>
-  <!-- текущий месяц -->
+  <canvas id="chart" ref="chart" class=" tw-max-w-xs tw-w-full tw-max-h-96"></canvas>
 </template>
 
 <script setup>
@@ -112,7 +107,6 @@ onMounted(async () => {
         },
         title: {
           display: true,
-          text: "Chart.js Doughnut Chart",
         },
       },
     },

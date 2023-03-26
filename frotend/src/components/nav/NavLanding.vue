@@ -61,6 +61,7 @@ import {
   ClipboardOutline,
   GitMergeSharp,
   LogoPaypal,
+  CreateSharp,
 } from "@vicons/ionicons5";
 import { RouterLink } from "vue-router";
 const { handleLogout } = useLogout();
@@ -131,7 +132,7 @@ const menuOptions = computed(() => [
       ),
     key: "go-ksk",
     show: isOrg.value,
-    icon: renderIcon(),
+    icon: renderIcon(CreateSharp),
   },
   {
     label: () =>
