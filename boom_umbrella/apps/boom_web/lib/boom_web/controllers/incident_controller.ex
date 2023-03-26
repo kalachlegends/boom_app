@@ -17,7 +17,9 @@ defmodule BoomWeb.IncidentController do
   use BoomWeb, :controller
   action_fallback(BoomWeb.FallbackController)
 
-  alias Boom.Model.Incident
+  import Ecto.Query
+  alias Boom.Model.{Incident, Organization}
+  alias Auth.Model.User
   alias Boom.Service.Incident, as: IncidentService
   alias Boom.Helper
 
@@ -26,11 +28,16 @@ defmodule BoomWeb.IncidentController do
   """
   @doc body: @body
   @doc auth: "token"
-  def create(conn, params) do #Timex.from_unix(params["close_dateq"], :millisecond)
-    with {:ok, item} <-
-           Incident.create(
-             params |> Helper.map_put_user_id(conn)
-           ) do
+  def create(conn, params) do
+    # Timex.from_unix(params["close_dateq"], :millisecond)
+
+    with {:ok, user} <- User.get(id: conn.assigns.user_id),
+         org <-
+           hd(
+             Boom.Repo.all(from(o in Organization, where: ^user.location_id in o.locations_list))
+           ),
+         {:ok, item} <-
+           Incident.create(params |> Map.put("location_id", user.location_id) |> Map.put("org_id", org.id) |> IO.inspect |> Helper.map_put_user_id(conn)) do
       {:render, %{incident: item}}
     end
   end
@@ -90,14 +97,10 @@ defmodule BoomWeb.IncidentController do
   end
 
   def update_from_manger(conn, params) do
-    opts = %{
-
-    }
+    opts = %{}
   end
 
   def update_from_org(conn, params) do
-    opts = %{
-
-    }
+    opts = %{}
   end
 end
