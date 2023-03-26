@@ -6,10 +6,18 @@ import like from "./like";
 
 export default store((/* { ssrContext } */) => {
   const store = createStore({
-    state: {},
+    state: {
+      movementAll: [],
+    },
     getters: {},
     mutations: {},
-    actions: {},
+    actions: {
+      async setLikeNovella({ state }, params) {
+        const result = await axios.post(`/like`, params);
+
+        state.likePublic = result.data.like_item;
+      },
+    },
     modules: {
       user,
       image,

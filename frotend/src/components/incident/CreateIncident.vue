@@ -149,6 +149,7 @@ const handleValidateClick = (e) => {
           console.log(response);
           message.error(getOneError(response.data.error));
         });
+      location.reload();
       isLoad.value = false;
     }
   });

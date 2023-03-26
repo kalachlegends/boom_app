@@ -3,9 +3,11 @@ defmodule BoomWeb.MoneyController do
   # Create money -> CRUD
   """
   @body %{
-    locations_list: "",
-    title: "",
-    user_id: ""
+    org_id: "binary_id",
+    cash: "map",
+    type: "string",
+    movement: "integer",
+    attrs: %{}
   }
 
   use BoomWeb, :controller

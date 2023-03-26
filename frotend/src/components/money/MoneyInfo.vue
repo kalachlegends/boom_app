@@ -1,33 +1,31 @@
 <template>
   <div class="tw-flex tw-justify-between tw-items-center tw-pb-4">
     <!-- <div class="tw-text-lg">{{ name }}</div> -->
-    <div class="sum">Сумма денег: {{ sum }}</div>
+    <n-h1 class="sum">Сумма денег: {{ sum }}</n-h1>
   </div>
 </template>
 
-<script>
+<script setup>
 import { axios } from "src/boot/axios.js";
+import { ref, onMounted } from "vue";
 
-export default {
-  data() {
-    return {
-      sum: 0,
-      name: "",
-    };
-  },
-  mounted() {
-    axios
-      .get("/money/all")
-      .then((response) => {
-        const data = response.data.money[0];
-        console.log(data);
-        this.sum = data.cash.bills + "." + data.cash.coins;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-};
+const sum = ref(0);
+const org = JSON.parse(localStorage.getItem("org"));
+onMounted(async () => {
+  await axios
+    .get("/money/attrs", {
+      params: {
+        org_id: org.id,
+      },
+    })
+    .then(({ data }) => {
+      console.log(data);
+      sum.value = data.money.cash.bills + "." + data.money.cash.coins;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 </script>
 
 <style lang="scss" scoped>
