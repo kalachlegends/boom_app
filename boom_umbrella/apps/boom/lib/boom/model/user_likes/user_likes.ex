@@ -7,7 +7,8 @@ defmodule Boom.Model.UserLikes do
     field(:user_id, :binary_id)
     field(:type_like, LikeType)
     field(:type_parent, TableType)
-
+    has_one(:views, NvDesign.Model.Views, foreign_key: :parent_id)
+    has_one(:like, NvDesign.Model.Like, foreign_key: :parent_id)
     timestamps()
   end
 

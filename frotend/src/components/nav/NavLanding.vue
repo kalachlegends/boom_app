@@ -58,16 +58,19 @@ import {
   MoonOutline,
   Sunny,
   HomeOutline,
+  ClipboardOutline,
+  GitMergeSharp,
+  LogoPaypal,
 } from "@vicons/ionicons5";
 import { RouterLink } from "vue-router";
 const { handleLogout } = useLogout();
 function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) });
 }
-const roles = JSON.parse(localStorage.getItem("roles"))
+const roles = JSON.parse(localStorage.getItem("roles"));
 
-const isOrg = computed(() => roles.some((p) =>  p == "osi" || p == "ksk"))
-const isMan = computed(() => roles.some((p) =>  p == "manager"))
+const isOrg = computed(() => roles.some((p) => p == "osi" || p == "ksk"));
+const isMan = computed(() => roles.some((p) => p == "manager"));
 const menuOptions = computed(() => [
   {
     label: () =>
@@ -91,7 +94,31 @@ const menuOptions = computed(() => [
         "Доска"
       ),
     key: "go-dashboard",
-    icon: renderIcon(HomeOutline),
+    icon: renderIcon(ClipboardOutline),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: "/telegram",
+        },
+        "Telegram"
+      ),
+    key: "go-telegram",
+    icon: renderIcon(GitMergeSharp),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: "/payments",
+        },
+        "Оплата"
+      ),
+    key: "go-payments",
+    icon: renderIcon(LogoPaypal),
   },
   {
     label: () =>
@@ -157,7 +184,7 @@ const menuOptionsBottom = computed(() => [
             handleChangeTheme("light");
           },
         },
-        "Яркая тема"
+        "Светлая тема"
       ),
     key: "Light",
     icon: renderIcon(Sunny),

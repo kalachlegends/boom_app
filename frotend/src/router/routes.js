@@ -22,6 +22,24 @@ const routes = [
     },
   },
   {
+    path: "/telegram",
+    name: "telegram",
+    component: () => import("src/pages/telegram/TelegramPage.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMain",
+    },
+  },
+  {
+    path: "/payments",
+    name: "payments",
+    component: () => import("src/pages/payments/PaymentsPage.vue"),
+    meta: {
+      requiresAuth: true,
+      layout: "AppLayoutMain",
+    },
+  },
+  {
     path: "/money",
     name: "money",
     component: () => import("src/pages/money/KskPage.vue"),
