@@ -61,7 +61,7 @@ defmodule Boom.Model.MoneyService do
     end
   end
 
-  def incteract_with_money(mm) do
+  def interact_with_money(mm) do
     money =
       from(
         money in Boom.Model.Money,
@@ -74,14 +74,14 @@ defmodule Boom.Model.MoneyService do
       case mm.movement do
         0 ->
           Decimal.add(
-            "#{money.cash.bills}.#{money.cash.coins}",
-            "-#{mm.cash.bills}.#{mm.cash.coins}"
+            "#{money.cash["bills"]}.#{money.cash["coins"]}",
+            "-#{mm.cash["bills"]}.#{mm.cash["coins"]}"
           )
 
         1 ->
           Decimal.add(
-            "#{money.cash.bills}.#{money.cash.coins}",
-            "#{mm.cash.bills}.#{mm.cash.coins}"
+            "#{money.cash["bills"]}.#{money.cash["coins"]}",
+            "#{mm.cash["bills"]}.#{mm.cash["coins"]}"
           )
       end
       |> decimal_to_money()

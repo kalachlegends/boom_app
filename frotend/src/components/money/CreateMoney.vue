@@ -93,6 +93,7 @@ const formState = ref({
   attrs: {},
   cash: {
     bills: 0,
+    coins: 0,
   },
   movement: 0,
   org_id: org.id,
@@ -106,7 +107,7 @@ const handleValidateClick = (e) => {
     if (!errors) {
       isLoad.value = true;
       await axios
-        .post("/money", formState.value)
+        .post("/money/movement", formState.value)
         .then(({ data }) => {
           console.log(data);
           message.success("Успешно создано!");
@@ -115,6 +116,7 @@ const handleValidateClick = (e) => {
           console.log(response);
           message.error(getOneError(response.data.error));
         });
+      location.reload();
       isLoad.value = false;
     }
   });
