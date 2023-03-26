@@ -21,7 +21,8 @@ defmodule BoomWeb.MoneyMovementController do
   @doc body: @body
   @doc auth: "token"
   def create(conn, params) do
-    with {:ok, item} <- MoneyMovement.create(params |> Helper.map_put_user_id(conn)) do
+    with {:ok, item} <- MoneyMovement.create(params |> Helper.map_put_user_id(conn)),
+         {:ok, struct} <- Boom.Model.MoneyService.interact_with_money(item) do
       {:render, %{moneymovement: item}}
     end
   end
@@ -91,12 +92,9 @@ defmodule BoomWeb.MoneyMovementController do
         do: nil,
         else: NaiveDateTime.from_iso8601!(params["end_date"]) |> NaiveDateTime.to_date()
 
-    case Boom.Model.MoneyService.get_by_period(%{start_date: start_date, end_date: end_date}) do
-      {:ok, list} ->
-        {:render, %{moneymovement: list}}
-
-      {:error, reason} ->
-        {:error, reason}
+    with {:ok, list} <-
+           Boom.Model.MoneyService.get_mm_by_period(%{start_date: start_date, end_date: end_date}) do
+      {:render, %{moneymovement: list}}
     end
   end
 end

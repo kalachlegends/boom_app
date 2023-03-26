@@ -14,6 +14,7 @@ defmodule Boom.Model.Incident do
     field(:title, :string)
     field(:user_id, :binary_id)
     field(:org_id, :binary_id)
+    has_one(:money_movement, Boom.Model.MoneyMovement)
 
     timestamps()
   end
