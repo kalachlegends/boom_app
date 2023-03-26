@@ -56,10 +56,10 @@ export default route(function (/* { store, ssrContext } */) {
 
   Router.beforeEach((to, from, next) => {
     if (to.meta.permissions && to.meta.permissions.length > 0) {
-      let roles = localStorage.getItem("roles");
-      let isAllowed = roles.some((p) => to.meta.permissions.includes(p));
+      let roles = JSON.parse(localStorage.getItem("roles"))
+      let isAllowed = roles.some((p) => to.meta.permissions.includes(p))
 
-      if (!isAllowed) return next("/");
+      if (!isAllowed) return next("/")
     }
 
     next();

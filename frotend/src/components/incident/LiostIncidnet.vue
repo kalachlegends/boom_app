@@ -4,7 +4,7 @@
         <Card    
       
         :objectCard="item " v-for="item in incidentListPassive"
-        draggable="true"
+        :draggable="canDrag(item)"
         @drag="onDragStart(item)"
         />
            
@@ -31,6 +31,7 @@ import { computed, onMounted, ref } from "vue";
 import { axios } from "src/boot/axios";
 import Card from "./Card.vue";
 const itemDrag = ref({});
+const org = localStorage.getItem("org")
 const inscidentList = ref([]);
 const incidentListPassive = computed(() =>
   inscidentList.value.filter((el) => el.status == "passive")
@@ -45,6 +46,15 @@ onMounted(async () => {
   inscidentList.value = data.incident;
 });
 
+const canDrag = (item) => {
+  if (org) {
+    if (JSON.parse(org).id == item.org_id) {
+      return true
+    }
+  }
+  return false
+}
+
 const onDragStart = (item) => {
   console.log();
   itemDrag.value = item;
@@ -53,14 +63,18 @@ const onDragEnd = () => {
   console.log(type);
   const item = inscidentList.value.find((el) => el.id == itemDrag.value.id);
 
-  item.status = type.value;
+  if (org) {
+    if (JSON.parse(org).id == item.org_id) {
+      item.status = type.value;
+    }
+  }
 };
 const onDragEnter = (typeREf) => {
   type.value = typeREf;
 };
 </script>
 <style  lang="scss">
-.n-card > .n-card__content {
+.n-card>.n-card__content {
   flex: 1;
   display: flex;
   gap: 10px;

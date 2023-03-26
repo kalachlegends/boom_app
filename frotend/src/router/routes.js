@@ -19,6 +19,7 @@ const routes = [
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
+      
     },
   },
   {
@@ -28,6 +29,7 @@ const routes = [
     meta: {
       requiresAuth: true,
       layout: "AppLayoutMain",
+      permissions: ["osi", "ksk"]
     },
   },
 
